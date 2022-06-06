@@ -54,9 +54,9 @@ jobs:
             - gcp-gcr/gcr-auth 
             
             - gcp-gcr/build-image: 
-                dockerfile: Dockerfile 
-                google-project-id: GOOGLE_PROJECT_ID 
-                image: $CIRCLE_WORKFLOW_ID 
+                dockerfile: Dockerfile
+                google-project-id: GOOGLE_PROJECT_ID
+                image: $CIRCLE_WORKFLOW_ID
                 registry-url: "gcr.io" 
                 tag: "latest" 
                 
