@@ -6,6 +6,7 @@ orbs:
     gcp-gcr: circleci/gcp-gcr@0.15.0
     cloudrun: circleci/gcp-cloud-run@1.0.1
     gcp-cli: circleci/gcp-cli@2.1
+    sonarcloud: sonarsource/sonarcloud@1.1.1
 executors:
     gcloud-executor:
         docker:
@@ -24,7 +25,14 @@ jobs:
             - run: mvn $MAVEN_CLI_OPTS clean package -e 
             - store_artifacts: 
                 path: target 
-                destination: target 
+                destination: target
+    static_code_analysis:
+        description: Runs a static code analysis
+        docker:
+            # replace with your preferred image
+            - image: cimg/base:stable
+        steps:
+            - sonarcloud/scan
     test:
         description: Test the Project
         docker: 
@@ -83,7 +91,10 @@ workflows:
     version: 2
     workflow: 
         jobs: 
-        - build 
+        - build
+        - static_code_analysis:
+            requires: 
+                - build
         - test: 
             requires: 
                 - build
