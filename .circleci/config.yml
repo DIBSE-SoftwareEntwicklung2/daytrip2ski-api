@@ -21,7 +21,9 @@ jobs:
             MAVEN_CLI_OPTS: "--batch-mode"
         steps: 
             - checkout 
-            - run: mvn $MAVEN_CLI_OPTS clean package -e 
+            - run: |
+                mvn $MAVEN_CLI_OPTS clean package -e 
+                mvn verify sonar:sonar -Dsonar.projectKey=Matthias-Steinlechner-MCI_daytrip2ski-api
             - store_artifacts: 
                 path: target 
                 destination: target 
@@ -35,15 +37,7 @@ jobs:
             - store_artifacts: 
                 path: reports 
                 destination: reports
-    sonarcloud_static_analysis:
-        docker:
-            - image: sugan1234/vaadinrepo:latest 
-        steps:
-            - checkout
-            - run:
-                name: Analyze on SonarCloud
-                command: mvn verify sonar:sonar -Dsonar.projectKey=Matthias-Steinlechner-MCI_daytrip2ski-api
-        
+                
     build_push_image_gcr:
     
         description: Build docker image and push to gcr registry 
@@ -91,14 +85,11 @@ workflows:
     version: 2
     workflow: 
         jobs: 
-        - build 
+        - build:
+            context: SonarCloud
         - test: 
             requires: 
-                - build
-        - sonarcloud_static_analysis:
-            requires: 
-                - build
-            context: SonarCloud
+                - build 
         - build_push_image_gcr:
             requires: 
                 - build 
