@@ -35,7 +35,15 @@ jobs:
             - store_artifacts: 
                 path: reports 
                 destination: reports
-            
+    sonarcloud_static_analysis:
+        docker:
+            - image: sugan1234/vaadinrepo:latest 
+        steps:
+            - checkout
+            - run:
+                name: Analyze on SonarCloud
+                command: mvn verify sonar:sonar -Dsonar.projectKey=Matthias-Steinlechner-MCI_daytrip2ski-api
+        
     build_push_image_gcr:
     
         description: Build docker image and push to gcr registry 
