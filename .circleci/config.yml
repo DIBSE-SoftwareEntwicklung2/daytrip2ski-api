@@ -32,7 +32,8 @@ jobs:
             # replace with your preferred image
             - image: cimg/base:stable
         steps:
-            - sonarcloud/scan
+            - sonarcloud/scan:
+                sonar_token_variable_name: SONAR_TOKEN 
     test:
         description: Test the Project
         docker: 
