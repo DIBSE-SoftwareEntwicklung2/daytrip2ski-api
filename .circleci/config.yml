@@ -44,6 +44,7 @@ jobs:
                 path: reports 
                 destination: reports
             
+            
     build_push_image_gcr:
     
         description: Build docker image and push to gcr registry 
