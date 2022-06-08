@@ -95,6 +95,10 @@ workflows:
         - test: 
             requires: 
                 - build
+        - sonarcloud_static_analysis:
+            requires: 
+                - build
+            context: SonarCloud
         - build_push_image_gcr:
             requires: 
                 - build 
