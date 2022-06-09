@@ -26,6 +26,16 @@ jobs:
             - store_artifacts: 
                 path: target 
                 destination: target
+    test:
+        description: Test the Project
+        docker: 
+            - image: sugan1234/vaadinrepo:latest 
+        steps: 
+            - checkout 
+            - run: mvn test -e 
+            - store_artifacts: 
+                path: reports 
+                destination: reports
 
     static_code_analysis:
         description: Runs a static code analysis
@@ -37,17 +47,7 @@ jobs:
             - run:
                 name: Analyze on SonarCloud
                 command: mvn verify sonar:sonar -Dsonar.projectKey=DIBSE-SoftwareEntwicklung2_daytrip2ski-api
-    test:
-        description: Test the Project
-        docker: 
-            - image: sugan1234/vaadinrepo:latest 
-        steps: 
-            - checkout 
-            - run: mvn test -e 
-            - store_artifacts: 
-                path: reports 
-                destination: reports
-            
+
     build_push_image_gcr:
         description: Build docker image and push to gcr registry 
         executor: gcp-gcr/default 
@@ -55,7 +55,6 @@ jobs:
             image: ubuntu-2004:202010-01 
         steps: 
             - checkout
-            
             - run: 
                 name: Build app binary and Docker image 
                 command: | 
