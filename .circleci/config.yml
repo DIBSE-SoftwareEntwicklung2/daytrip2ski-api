@@ -30,8 +30,9 @@ jobs:
         description: Runs a static code analysis
         docker:
             # replace with your preferred image
-            - image: cimg/base:stable
+            - image: sugan1234/vaadinrepo:latest
         steps:
+            - checkout
             - sonarcloud/scan:
                 sonar_token_variable_name: SONAR_TOKEN 
     test:
@@ -95,6 +96,7 @@ workflows:
         jobs: 
         - build
         - static_code_analysis:
+            context: sonarcloud
             requires: 
                 - build
         - test: 
@@ -106,7 +108,4 @@ workflows:
         - gcp_cloudrun_deploy: 
             requires: 
                 - build_push_image_gcr
-
-
-
 
