@@ -26,6 +26,7 @@ jobs:
             - store_artifacts: 
                 path: target 
                 destination: target
+
     static_code_analysis:
         description: Runs a static code analysis
         docker:
@@ -33,11 +34,9 @@ jobs:
             - image: sugan1234/vaadinrepo:latest
         steps:
             - checkout
-            - build
             - run:
                 name: Analyze on SonarCloud
                 command: mvn verify sonar:sonar -Dsonar.projectKey=DIBSE-SoftwareEntwicklung2_daytrip2ski-api
-                sonar_token_variable_name: SONAR_TOKEN 
     test:
         description: Test the Project
         docker: 
@@ -50,7 +49,6 @@ jobs:
                 destination: reports
             
     build_push_image_gcr:
-    
         description: Build docker image and push to gcr registry 
         executor: gcp-gcr/default 
         machine: 
@@ -96,7 +94,7 @@ workflows:
     version: 2
     workflow: 
         jobs: 
-        - build
+        - build 
         - test: 
             requires: 
                 - build
