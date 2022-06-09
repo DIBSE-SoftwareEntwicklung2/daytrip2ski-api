@@ -6,6 +6,7 @@ orbs:
     gcp-gcr: circleci/gcp-gcr@0.15.0
     cloudrun: circleci/gcp-cloud-run@1.0.1
     gcp-cli: circleci/gcp-cli@2.1
+    sonarcloud: sonarsource/sonarcloud@1.1.1
 executors:
     gcloud-executor:
         docker:
@@ -21,12 +22,19 @@ jobs:
             MAVEN_CLI_OPTS: "--batch-mode"
         steps: 
             - checkout 
-            - run: |
-                mvn $MAVEN_CLI_OPTS clean package -e 
-                mvn verify sonar:sonar -Dsonar.projectKey=Matthias-Steinlechner-MCI_daytrip2ski-api
+            - run: mvn $MAVEN_CLI_OPTS clean package -e 
             - store_artifacts: 
                 path: target 
-                destination: target 
+                destination: target
+    static_code_analysis:
+        description: Runs a static code analysis
+        docker:
+            # replace with your preferred image
+            - image: sugan1234/vaadinrepo:latest
+        steps:
+            - checkout
+            - sonarcloud/scan:
+                sonar_token_variable_name: SONAR_TOKEN 
     test:
         description: Test the Project
         docker: 
@@ -37,7 +45,7 @@ jobs:
             - store_artifacts: 
                 path: reports 
                 destination: reports
-                
+            
     build_push_image_gcr:
     
         description: Build docker image and push to gcr registry 
@@ -85,11 +93,14 @@ workflows:
     version: 2
     workflow: 
         jobs: 
-        - build:
-            context: SonarCloud
+        - build
+        - static_code_analysis:
+            context: sonarcloud
+            requires: 
+                - build
         - test: 
             requires: 
-                - build 
+                - build
         - build_push_image_gcr:
             requires: 
                 - build 
