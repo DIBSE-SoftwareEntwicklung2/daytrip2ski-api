@@ -33,7 +33,10 @@ jobs:
             - image: sugan1234/vaadinrepo:latest
         steps:
             - checkout
-            - sonarcloud/scan:
+            - build
+            - run:
+                name: Analyze on SonarCloud
+                command: mvn verify sonar:sonar -Dsonar.projectKey=DIBSE-SoftwareEntwicklung2_daytrip2ski-api
                 sonar_token_variable_name: SONAR_TOKEN 
     test:
         description: Test the Project
@@ -94,11 +97,11 @@ workflows:
     workflow: 
         jobs: 
         - build
-        - static_code_analysis:
-            context: sonarcloud
+        - test: 
             requires: 
                 - build
-        - test: 
+        - static_code_analysis:
+            context: SonarCloud
             requires: 
                 - build
         - build_push_image_gcr:
