@@ -21,7 +21,7 @@ public class PersonService {
     }
 
     public void addNewPerson(Person person) {
-        Optional<Person> personOptional = personRepository.findStudentByEmail(person.getEmail());
+        Optional<Person> personOptional = personRepository.findPersonByEmail(person.getEmail());
         if (personOptional.isPresent()) {
             throw new IllegalStateException("Email already exists");
         }
