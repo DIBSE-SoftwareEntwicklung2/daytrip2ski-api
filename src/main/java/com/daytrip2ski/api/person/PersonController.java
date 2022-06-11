@@ -16,7 +16,7 @@ public class PersonController {
     }
 
     @GetMapping
-    public List<Person> getPerson() {
+    public List<Person> getPersons() {
         return personService.getPersons();
     }
 
