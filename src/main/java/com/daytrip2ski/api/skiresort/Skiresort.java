@@ -40,6 +40,8 @@ public class Skiresort {
     private Boolean skiRent;
     private Boolean skiingLessons;
     private Boolean familyFriendly;
+    private Double priceDayTicket;
+    private Double priceHalfDayTicket;
     private String remark;
     private String description;
 
