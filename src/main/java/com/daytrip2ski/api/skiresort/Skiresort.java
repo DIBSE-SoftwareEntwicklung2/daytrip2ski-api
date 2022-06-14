@@ -3,8 +3,8 @@ package com.daytrip2ski.api.skiresort;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -30,35 +30,90 @@ public class Skiresort {
     private Long longitude;
     private Long altitudeValley;
     private Long altitudeMountain;
-    private Long numberOfLifts;
-    private String difficulty;
-    private Long totalSkiSlopeDistance;
+    private Long numberOfCogRailway;
+    private Long numberOfCableCar;
+    private Long numberOfGondolaLift;
+    private Long numberOfChairLift;
+    private Long numberOfTBarLift;
+    private Long numberOfBabyLift;
+    private Long numberOfMovingCarpet;
+    private Long distanceEasy;
+    private Long distanceIntermediate;
+    private Long distanceDifficult;
     private String generalSnowCondition;
     private Long numberOfRestaurants;
+    @Column(length = 1024)
     private String webcamUrl;
+    @Column(length = 1024)
     private String websiteUrl;
-    private Boolean skiRent;
-    private Boolean skiingLessons;
+    private Boolean skiRental;
+    private Boolean skiCourse;
     private Boolean familyFriendly;
-    private Double priceDayTicket;
-    private Double priceHalfDayTicket;
+    private Double priceDayTicketAdults;
+    private Double priceDayTicketYouth;
+    private Double priceDayTicketChildren;
+    private LocalDate seasonFrom;
+    private LocalDate seasonTo;
+    private LocalTime openingHoursFrom;
+    private LocalTime openingHoursTo;
+    @Lob
+    private String openingHoursNote;
+    @Lob
     private String remark;
+    @Lob
     private String description;
-
-    @OneToMany(
-            mappedBy = "skiresort",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.EAGER
-    )
-    private Set<OpeningHours> openingHours = new HashSet<>();
-
-    @OneToMany(
-            mappedBy = "skiresort",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.EAGER
-    )
-    private Set<SkiSlope> skiSlope = new HashSet<>();
     private Boolean isActive;
+
+    public Skiresort(String name,
+                     Long latitude, Long longitude,
+                     Long altitudeValley, Long altitudeMountain,
+                     Long numberOfCogRailway,
+                     Long numberOfCableCar, Long numberOfGondolaLift,
+                     Long numberOfChairLift, Long numberOfTBarLift,
+                     Long numberOfBabyLift, Long numberOfMovingCarpet,
+                     Long distanceEasy, Long distanceIntermediate,
+                     Long distanceDifficult,
+                     String generalSnowCondition, Long numberOfRestaurants,
+                     String webcamUrl, String websiteUrl,
+                     Boolean skiRental, Boolean skiCourse,
+                     Boolean familyFriendly, Double priceDayTicketAdults,
+                     Double priceDayTicketYouth, Double priceDayTicketChildren,
+                     LocalDate seasonFrom, LocalDate seasonTo,
+                     LocalTime openingHoursFrom, LocalTime openingHoursTo,
+                     String openingHoursNote, String remark,
+                     String description, Boolean isActive) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.altitudeValley = altitudeValley;
+        this.altitudeMountain = altitudeMountain;
+        this.numberOfCogRailway = numberOfCogRailway;
+        this.numberOfCableCar = numberOfCableCar;
+        this.numberOfGondolaLift = numberOfGondolaLift;
+        this.numberOfChairLift = numberOfChairLift;
+        this.numberOfTBarLift = numberOfTBarLift;
+        this.numberOfBabyLift = numberOfBabyLift;
+        this.numberOfMovingCarpet = numberOfMovingCarpet;
+        this.distanceEasy = distanceEasy;
+        this.distanceIntermediate = distanceIntermediate;
+        this.distanceDifficult = distanceDifficult;
+        this.generalSnowCondition = generalSnowCondition;
+        this.numberOfRestaurants = numberOfRestaurants;
+        this.webcamUrl = webcamUrl;
+        this.websiteUrl = websiteUrl;
+        this.skiRental = skiRental;
+        this.skiCourse = skiCourse;
+        this.familyFriendly = familyFriendly;
+        this.priceDayTicketAdults = priceDayTicketAdults;
+        this.priceDayTicketYouth = priceDayTicketYouth;
+        this.priceDayTicketChildren = priceDayTicketChildren;
+        this.seasonFrom = seasonFrom;
+        this.seasonTo = seasonTo;
+        this.openingHoursFrom = openingHoursFrom;
+        this.openingHoursTo = openingHoursTo;
+        this.openingHoursNote = openingHoursNote;
+        this.remark = remark;
+        this.description = description;
+        this.isActive = isActive;
+    }
 }

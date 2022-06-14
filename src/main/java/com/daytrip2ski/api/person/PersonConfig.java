@@ -11,7 +11,7 @@ import java.util.List;
 @Configuration
 public class PersonConfig {
     @Bean
-    CommandLineRunner commandLineRunner(PersonRepository repository) {
+    CommandLineRunner insertPersons(PersonRepository repository) {
         return args -> {
             Person martin = new Person("Martin",
                                 "Angermair",
