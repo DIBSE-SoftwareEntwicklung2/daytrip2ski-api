@@ -31,6 +31,7 @@ public class Skiresort {
     private Long altitudeValley;
     private Long altitudeMountain;
     private Long numberOfCogRailway;
+    private Long numberOfFunicular;
     private Long numberOfCableCar;
     private Long numberOfGondolaLift;
     private Long numberOfChairLift;
@@ -67,7 +68,7 @@ public class Skiresort {
     public Skiresort(String name,
                      Long latitude, Long longitude,
                      Long altitudeValley, Long altitudeMountain,
-                     Long numberOfCogRailway,
+                     Long numberOfCogRailway, Long numberOfFunicular,
                      Long numberOfCableCar, Long numberOfGondolaLift,
                      Long numberOfChairLift, Long numberOfTBarLift,
                      Long numberOfBabyLift, Long numberOfMovingCarpet,
@@ -88,6 +89,7 @@ public class Skiresort {
         this.altitudeValley = altitudeValley;
         this.altitudeMountain = altitudeMountain;
         this.numberOfCogRailway = numberOfCogRailway;
+        this.numberOfFunicular = numberOfFunicular;
         this.numberOfCableCar = numberOfCableCar;
         this.numberOfGondolaLift = numberOfGondolaLift;
         this.numberOfChairLift = numberOfChairLift;
