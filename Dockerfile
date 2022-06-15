@@ -1,5 +1,5 @@
 # Stage that builds the application, a prerequisite for the running stage
-FROM maven:3-openjdk-16-slim as build
+FROM maven:3-openjdk-17-slim as build
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends nodejs
 
@@ -20,7 +20,7 @@ COPY --chown=myuser:myuser src src
 RUN mvn clean package -DskipTests -Pproduction
 
 # Running stage: the part that is used for running the application
-FROM openjdk:16-jdk-slim
+FROM openjdk:17-jdk-slim
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends nodejs
 
