@@ -20,7 +20,7 @@ COPY --chown=myuser:myuser src src
 RUN mvn clean package -DskipTests -Pproduction
 
 # Running stage: the part that is used for running the application
-FROM openjdk:16-jdk-slim
+FROM openjdk:17-jdk
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update -qq && apt-get install -qq --no-install-recommends nodejs
 
@@ -28,4 +28,4 @@ COPY --from=build /usr/src/app/target/*.jar /usr/app/app.jar
 RUN useradd -m myuser
 USER myuser
 EXPOSE 8080
-CMD java -jar /usr/app/app.jar
+CMD java -jar -Dspring.profiles.active=prod app.jar
