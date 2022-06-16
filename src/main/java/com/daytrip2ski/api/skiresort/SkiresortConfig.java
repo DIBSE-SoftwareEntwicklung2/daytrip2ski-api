@@ -108,8 +108,48 @@ public class SkiresortConfig {
                     "The ski resort Snow Space Salzburg – Flachau/\u200BWagrain/\u200BSt. Johann-Alpendorf is located in the Salzburger Sportwelt (Austria, Salzburg (Salzburger Land), Pongau). For skiing and snowboarding, there are 120.1 km of slopes and 5 km of ski routes available. 45 lifts transport the guests. The winter sports area is situated between the elevations of 740 and 1,980 m.",
                     Boolean.TRUE);
 
+            Skiresort innsbruck = new Skiresort("Skigebiet Patscherkofel – Innsbruck-Igls", null, null, 1009L, 1965L,
+                    0L, 0L, 0L, 1L, 0L, 3L, 1L, 1L,
+                    5L, 10L, 4L, null, 3L,
+                    "https://portal.live-panorama.com/patscherkofel/bergstation.mp4",
+                    "https://www.patscherkofelbahn.at/#sommer",
+                    Boolean.TRUE, Boolean.TRUE, Boolean.TRUE , 41D,33.3D, 25.6D,
+                    LocalDate.of(2022, Month.DECEMBER, 17), LocalDate.of(2023, Month.APRIL, 2),
+                    LocalTime.of(8, 30), LocalTime.of(16, 00),
+                    "The openening times are provided by the ski resort Patscherkofel – Innsbruck-Igls and can vary based on external conditions, day of the week, school holidays and public holidays.",
+                    null,
+                    "The ski resort Patscherkofel – Innsbruck-Igls is located in the Innsbruck region (Austria, Tyrol (Tirol)). For skiing and snowboarding, there are 19 km of slopes available. 6 lifts transport the guests. The winter sports area is situated between the elevations of 1,009 and 1,965 m.\n" +
+                            "\n",
+                    Boolean.TRUE);
+
+            Skiresort valdisere = new Skiresort("Tignes/\u200BVal d'Isère", null, null, 1550L, 3456L,
+                    0L, 2L, 2L, 7L, 40L, 29L, 2L, 0L,
+                    170L, 78L, 52L, null, 16L,
+                    "https://www.valdisere.com/en/webcam/webcam-village/",
+                    "https://www.valdisere.com/en/ski/ski-area/",
+                    Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 63D, null, 51D,
+                    LocalDate.of(2022, Month.JUNE, 18), LocalDate.of(2022, Month.JULY, 31),
+                    LocalTime.of(9, 30), LocalTime.of(16, 30),
+                    "The openening times are provided by the ski resort Tignes/\u200BVal d'Isère and can vary based on external conditions, day of the week, school holidays and public holidays.",
+                    null,
+                    "The ski resort Tignes/\u200BVal d'Isère is located in the Tarentaise (France, Auvergne-Rhône-Alpes, Savoie Mont Blanc, Savoie, Albertville). For skiing and snowboarding, there are 300 km of slopes and 20 km of ski routes available. 82 lifts transport the guests. The winter sports area is situated between the elevations of 1,550 and 3,456 m.",
+                    Boolean.TRUE);
+
+            Skiresort kleinkirchheim = new Skiresort("Bad Kleinkirchheim", null, null, 1087L, 2055L,
+                    0L, 0L, 0L, 4L, 8L, 9L, 1L, 0L,
+                    18L, 77L, 8L, null, 7L,
+                    "https://www.valdisere.com/en/webcam/webcam-village/",
+                    "https://www.valdisere.com/en/ski/ski-area/",
+                    Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 52.5D, 40D, 26.5D,
+                    LocalDate.of(2022, Month.DECEMBER, 8), LocalDate.of(2023, Month.APRIL, 2),
+                    LocalTime.of(8, 30), LocalTime.of(16, 00),
+                    "The openening times are provided by the ski resort Bad Kleinkirchheim and can vary based on external conditions, day of the week, school holidays and public holidays.",
+                    null,
+                    "The ski resort Bad Kleinkirchheim is located in the District of Spittal an der Drau (Austria, Carinthia (Kärnten), Upper Carinthia (Oberkärnten)). For skiing and snowboarding, there are 103 km of slopes and 5 km of ski routes available. 22 lifts transport the guests. The winter sports area is situated between the elevations of 1,087 and 2,055 m.",
+                    Boolean.TRUE);
+
             repository.saveAll(
-                    List.of(kitzski, wengen, ischgl, groeden, schladming, anton, flachau)
+                    List.of(kitzski, wengen, ischgl, groeden, schladming, anton, flachau, innsbruck, valdisere, kleinkirchheim)
             );
         };
     }
