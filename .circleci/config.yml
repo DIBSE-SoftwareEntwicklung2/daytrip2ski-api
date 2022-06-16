@@ -22,7 +22,7 @@ jobs:
             MAVEN_CLI_OPTS: "--batch-mode"
         steps: 
             - checkout 
-            - run: mvn $MAVEN_CLI_OPTS package -Pproduction -e 
+            - run: mvn verify
             - store_artifacts: 
                 path: target 
                 destination: target 
