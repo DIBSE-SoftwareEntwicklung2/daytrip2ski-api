@@ -22,14 +22,7 @@ jobs:
             MAVEN_CLI_OPTS: "--batch-mode"
         steps: 
             - checkout 
-            - restore_cache:
-                keys:
-                    - v1-dependencies-{{ checksum "pom.xml" }}
-                    - v1-dependencies-
             - run: mvn $MAVEN_CLI_OPTS install
-            - store_artifacts: 
-                path: target 
-                destination: target
     test:
         description: Test the Project
         docker: 
