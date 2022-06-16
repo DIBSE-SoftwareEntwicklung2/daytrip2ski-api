@@ -22,7 +22,10 @@ jobs:
             MAVEN_CLI_OPTS: "--batch-mode"
         steps: 
             - checkout 
-            - run: mvn $MAVEN_CLI_OPTS install
+            - run: mvn $MAVEN_CLI_OPTS clean package -Pproduction -e 
+            - store_artifacts: 
+                path: target 
+                destination: target 
     test:
         description: Test the Project
         docker: 
