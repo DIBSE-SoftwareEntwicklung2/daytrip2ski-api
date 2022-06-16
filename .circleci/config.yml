@@ -22,10 +22,10 @@ jobs:
             MAVEN_CLI_OPTS: "--batch-mode"
         steps: 
             - checkout 
-            - run: mvn $MAVEN_CLI_OPTS clean package -Pproduction -e
+            - run: mvn $MAVEN_CLI_OPTS clean package -e 
             - store_artifacts: 
                 path: target 
-                destination: target 
+                destination: target
     test:
         description: Test the Project
         docker: 
@@ -107,7 +107,3 @@ workflows:
         - gcp_cloudrun_deploy: 
             requires: 
                 - build_push_image_gcr
-
-
-
-
