@@ -26,8 +26,8 @@ public class Skiresort {
     )
     private Long id;
     private String name;
-    private Long latitude;
-    private Long longitude;
+    private Double latitude;
+    private Double longitude;
     private Long altitudeValley;
     private Long altitudeMountain;
     private Long numberOfCogRailway;
@@ -47,6 +47,10 @@ public class Skiresort {
     private String webcamUrl;
     @Column(length = 1024)
     private String websiteUrl;
+    @Column(length = 1024)
+    private String weatherActualUrl;
+    @Column(length = 1024)
+    private String weatherForecastUrl;
     private Boolean skiRental;
     private Boolean skiCourse;
     private Boolean familyFriendly;
@@ -66,7 +70,7 @@ public class Skiresort {
     private Boolean isActive;
 
     public Skiresort(String name,
-                     Long latitude, Long longitude,
+                     Double latitude, Double longitude,
                      Long altitudeValley, Long altitudeMountain,
                      Long numberOfCogRailway, Long numberOfFunicular,
                      Long numberOfCableCar, Long numberOfGondolaLift,
@@ -76,6 +80,7 @@ public class Skiresort {
                      Long distanceDifficult,
                      String generalSnowCondition, Long numberOfRestaurants,
                      String webcamUrl, String websiteUrl,
+                     String weatherActualUrl, String weatherForecastUrl,
                      Boolean skiRental, Boolean skiCourse,
                      Boolean familyFriendly, Double priceDayTicketAdults,
                      Double priceDayTicketYouth, Double priceDayTicketChildren,
@@ -103,6 +108,8 @@ public class Skiresort {
         this.numberOfRestaurants = numberOfRestaurants;
         this.webcamUrl = webcamUrl;
         this.websiteUrl = websiteUrl;
+        this.weatherActualUrl = weatherActualUrl;
+        this.weatherForecastUrl = weatherActualUrl;
         this.skiRental = skiRental;
         this.skiCourse = skiCourse;
         this.familyFriendly = familyFriendly;

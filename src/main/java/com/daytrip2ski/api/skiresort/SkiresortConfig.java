@@ -1,7 +1,5 @@
 package com.daytrip2ski.api.skiresort;
 
-import com.daytrip2ski.api.person.Person;
-import com.daytrip2ski.api.person.PersonRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +15,13 @@ public class SkiresortConfig {
     @Bean
     CommandLineRunner insertSkiresorts(SkiresortRepository repository) {
         return args -> {
-            Skiresort kitzski = new Skiresort("KitzSki", null, null, 800L, 2000L,
+            Skiresort kitzski = new Skiresort("KitzSki", 47.444990D, 12.391430D, 800L, 2000L,
                     0L, 0L, 1L, 22L, 27L, 9L, 1L, 8L,
                     102L, 66L, 20L, null, 37L,
                     "https://www.kitzski.at/de/bergurlaub-tirol/webcams.html",
                     "https://www.kitzski.at/",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.444990&lon=12.391430&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.444990&lon=12.391430&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 59.5D, 44D, 29.5D,
                     LocalDate.of(2022, Month.OCTOBER, 29), LocalDate.of(2023, Month.APRIL, 16),
                     LocalTime.of(8, 30), LocalTime.of(16, 0),
@@ -30,11 +30,13 @@ public class SkiresortConfig {
                     "The ski resort KitzSki – Kitzbühel/\u200BKirchberg is located in Kitzbühel (Austria, Tyrol (Tirol), Tiroler Unterland, Kitzbühel (District)) and in the Brixental (Austria, Tyrol (Tirol), Tiroler Unterland, Kitzbüheler Alpen). For skiing and snowboarding, there are 188 km of slopes and 45 km of ski routes available. 57 lifts transport the guests. The winter sports area is situated between the elevations of 800 and 2,000 m.",
                     Boolean.TRUE);
 
-            Skiresort wengen = new Skiresort("Grindelwald/Wengen", null, null, 796L, 2400L,
+            Skiresort wengen = new Skiresort("Grindelwald/Wengen", 46.605000D, 7.921340D, 796L, 2400L,
                     0L, 0L, 1L, 2L, 10L, 3L, 5L, 3L,
                     33L, 56L, 13L, null, 8L,
                     "https://www.jungfrau.ch/de-ch/live/webcams/#webcam-grindelwald-first",
                     "https://www.jungfrau.ch/de-ch/jungfrau-ski-region/grindelwald-wengen/",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=46.605000&lon=7.921340&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=46.605000&lon=7.921340&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 66D, null, 31D,
                     LocalDate.of(2022, Month.DECEMBER, 10), LocalDate.of(2023, Month.APRIL, 9),
                     LocalTime.of(8, 0), LocalTime.of(16, 30),
@@ -43,11 +45,13 @@ public class SkiresortConfig {
                     "The ski resort Kleine Scheidegg/\u200BMännlichen – Grindelwald/\u200BWengen is located in the Jungfrau Region (Switzerland, Espace Mittelland, Bern, Bernese Oberland). For skiing and snowboarding, there are 102 km of slopes available. 24 lifts transport the guests. The winter sports area is situated between the elevations of 944 and 2,400 m.",
                     Boolean.TRUE);
 
-            Skiresort ischgl = new Skiresort("Ischgl", null, null, 1360L, 2872L,
+            Skiresort ischgl = new Skiresort("Ischgl", 47.011845, 10.288420, 1360L, 2872L,
                     0L, 0L, 3L, 4L, 25L, 9L, 0L, 0L,
                     47L, 143L, 49L, null, 6L,
                     "https://www.ischgl.com/de/More/Webcams",
                     "https://www.ischgl.com/de/More/Seilbahnunternehmen",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.011845&lon=10.288420&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.011845&lon=10.288420&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 63D, null, 39D,
                     LocalDate.of(2022, Month.NOVEMBER, 24), LocalDate.of(2023, Month.MAY, 1),
                     LocalTime.of(8, 30), LocalTime.of(16, 00),
@@ -56,11 +60,13 @@ public class SkiresortConfig {
                     "The ski resort Ischgl/\u200BSamnaun – Silvretta Arena is located in Paznaun-Ischgl (Austria, Tyrol (Tirol), Tiroler Oberland, Landeck) and in the Engadin Samnaun Val Müstair Holiday Region (Switzerland, Eastern Switzerland, Graubünden). For skiing and snowboarding, there are 239 km of slopes and 15 km of ski routes available. 41 lifts transport the guests. The winter sports area is situated between the elevations of 1,360 and 2,872 m.",
                     Boolean.TRUE);
 
-            Skiresort groeden = new Skiresort("Val Gardena (Gröden)", null, null, 1236L, 2518L,
+            Skiresort groeden = new Skiresort("Val Gardena (Gröden)", 46.559758D, 11.704926D, 1236L, 2518L,
                     0L, 2L, 2L, 9L, 41L, 23L, 1L, 0L,
                     52L, 105L, 21L, null, 9L,
                     "https://sts104.feratel.co.at/streams/stsstore103/1/06345_62a96fa5-a71bVid.mp4?dcsdesign=feratel4",
                     "https://www.valgardena.it/de/",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=46.559758&lon=11.704926&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=46.559758&lon=11.704926&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 62D, 43D, 43D,
                     LocalDate.of(2022, Month.DECEMBER, 3), LocalDate.of(2023, Month.APRIL, 11),
                     LocalTime.of(8, 30), LocalTime.of(16, 30),
@@ -69,11 +75,13 @@ public class SkiresortConfig {
                     "The ski resort Val Gardena (Gröden) is located in Val Gardena (Gröden) (Italy, Trentino-Alto Adige (Trentino-Südtirol), South Tyrol (Südtirol)). For skiing and snowboarding, there are 178 km of slopes available. 79 lifts transport the guests. The winter sports area is situated between the elevations of 1,236 and 2,518 m.",
                     Boolean.TRUE);
 
-            Skiresort schladming = new Skiresort("Schladming – Planai", null, null, 728L, 2015L,
+            Skiresort schladming = new Skiresort("Schladming – Planai", 47.394203D, 13.685440D, 728L, 2015L,
                     0L, 1L, 1L, 9L, 20L, 12L, 0L, 3L,
                     46L, 68L, 8L, null, 4L,
                     "https://sts103.feratel.co.at/streams/stsstore104/1/05420_62a9721a-f976Vid.mp4?dcsdesign=feratel4",
                     "https://www.planai.at/de",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.394203&lon=13.685440&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.394203&lon=13.685440&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 60.5D, 45.5D, 30.5D,
                     LocalDate.of(2022, Month.NOVEMBER, 26), LocalDate.of(2023, Month.APRIL, 17),
                     LocalTime.of(8, 15), LocalTime.of(16, 30),
@@ -82,11 +90,13 @@ public class SkiresortConfig {
                     "The ski resort Val Gardena (Gröden) is located in Val Gardena (Gröden) (Italy, Trentino-Alto Adige (Trentino-Südtirol), South Tyrol (Südtirol)). For skiing and snowboarding, there are 178 km of slopes available. 79 lifts transport the guests. The winter sports area is situated between the elevations of 1,236 and 2,518 m.\",",
                     Boolean.TRUE);
 
-            Skiresort anton = new Skiresort("St. Anton/\u200BLech/\u200BZürs/\u200BWarth/\u200B", null, null, 1300L, 2811L,
+            Skiresort anton = new Skiresort("St. Anton/\u200BLech/\u200BZürs/\u200BWarth/\u200B", 47.129635D, 10.268179D, 1300L, 2811L,
                     0L, 0L, 5L, 11L, 43L, 22L, 4L, 2L,
                     130L, 121L, 51L, null, 12L,
                     "https://www.stantonamarlberg.com/XooWebKit/bin/imagecache.php/source/3_f20030bb0272cc21.20220615075132/c47_QU3j4/20220615074924.jpg?width=588",
                     "https://www.stantonamarlberg.com/de/winter/skigebiet/aktuelles-zum-arlberg-skigebiet",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.129635&lon=10.268179&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.129635&lon=10.268179&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 61D, 55D, 36.5D,
                     LocalDate.of(2022, Month.NOVEMBER, 26), LocalDate.of(2023, Month.APRIL, 17),
                     LocalTime.of(8, 15), LocalTime.of(16, 30),
@@ -95,11 +105,13 @@ public class SkiresortConfig {
                     "The ski resort St. Anton/\u200BSt. Christoph/\u200BStuben/\u200BLech/\u200BZürs/\u200BWarth/\u200BSchröcken – Ski Arlberg is located in St. Anton am Arlberg (Austria, Tyrol (Tirol), Tiroler Oberland, Landeck) and in the Bregenzerwald (Austria, Vorarlberg, Bregenz). For skiing and snowboarding, there are 302 km of slopes and 200 km of ski routes available. 88 lifts transport the guests. The winter sports area is situated between the elevations of 1,300 and 2,811 m.",
                     Boolean.TRUE);
 
-            Skiresort flachau = new Skiresort("Snow Space Salzburg – Flachau", null, null, 740L, 1980L,
+            Skiresort flachau = new Skiresort("Snow Space Salzburg – Flachau", 47.353417D, 13.394444D, 740L, 1980L,
                     0L, 0L, 2L, 10L, 16L, 8L, 7L, 2L,
                     34L, 82L, 4L, null, 9L,
                     "https://wtvthmb.feratel.com/thumbnails/5292.jpeg?t=38&dcsdesign=WTP_skiresort.de&design=v3",
                     "https://www.snow-space.com/en/winter/region/villages/flachau",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.353417&lon=13.394444&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.353417&lon=13.394444&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 61D, 46D, 30.5D,
                     LocalDate.of(2022, Month.DECEMBER, 16), LocalDate.of(2023, Month.APRIL, 18),
                     LocalTime.of(8, 30), LocalTime.of(16, 15),
@@ -108,11 +120,13 @@ public class SkiresortConfig {
                     "The ski resort Snow Space Salzburg – Flachau/\u200BWagrain/\u200BSt. Johann-Alpendorf is located in the Salzburger Sportwelt (Austria, Salzburg (Salzburger Land), Pongau). For skiing and snowboarding, there are 120.1 km of slopes and 5 km of ski routes available. 45 lifts transport the guests. The winter sports area is situated between the elevations of 740 and 1,980 m.",
                     Boolean.TRUE);
 
-            Skiresort innsbruck = new Skiresort("Skigebiet Patscherkofel – Innsbruck-Igls", null, null, 1009L, 1965L,
+            Skiresort innsbruck = new Skiresort("Skigebiet Patscherkofel – Innsbruck-Igls", 47.231880D, 11.408540D, 1009L, 1965L,
                     0L, 0L, 0L, 1L, 0L, 3L, 1L, 1L,
                     5L, 10L, 4L, null, 3L,
                     "https://portal.live-panorama.com/patscherkofel/bergstation.mp4",
                     "https://www.patscherkofelbahn.at/#sommer",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.231880&lon=11.408540&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=47.231880&lon=11.408540&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE , 41D,33.3D, 25.6D,
                     LocalDate.of(2022, Month.DECEMBER, 17), LocalDate.of(2023, Month.APRIL, 2),
                     LocalTime.of(8, 30), LocalTime.of(16, 00),
@@ -122,11 +136,13 @@ public class SkiresortConfig {
                             "\n",
                     Boolean.TRUE);
 
-            Skiresort valdisere = new Skiresort("Tignes/\u200BVal d'Isère", null, null, 1550L, 3456L,
+            Skiresort valdisere = new Skiresort("Tignes/\u200BVal d'Isère", 45.468323D, 6.905578D, 1550L, 3456L,
                     0L, 2L, 2L, 7L, 40L, 29L, 2L, 0L,
                     170L, 78L, 52L, null, 16L,
                     "https://www.valdisere.com/en/webcam/webcam-village/",
                     "https://www.valdisere.com/en/ski/ski-area/",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=45.468323&lon=6.905578&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=45.468323&lon=6.905578&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 63D, null, 51D,
                     LocalDate.of(2022, Month.JUNE, 18), LocalDate.of(2022, Month.JULY, 31),
                     LocalTime.of(9, 30), LocalTime.of(16, 30),
@@ -135,11 +151,13 @@ public class SkiresortConfig {
                     "The ski resort Tignes/\u200BVal d'Isère is located in the Tarentaise (France, Auvergne-Rhône-Alpes, Savoie Mont Blanc, Savoie, Albertville). For skiing and snowboarding, there are 300 km of slopes and 20 km of ski routes available. 82 lifts transport the guests. The winter sports area is situated between the elevations of 1,550 and 3,456 m.",
                     Boolean.TRUE);
 
-            Skiresort kleinkirchheim = new Skiresort("Bad Kleinkirchheim", null, null, 1087L, 2055L,
+            Skiresort kleinkirchheim = new Skiresort("Bad Kleinkirchheim", 46.814883D, 13.798324D, 1087L, 2055L,
                     0L, 0L, 0L, 4L, 8L, 9L, 1L, 0L,
                     18L, 77L, 8L, null, 7L,
                     "https://www.valdisere.com/en/webcam/webcam-village/",
                     "https://www.valdisere.com/en/ski/ski-area/",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=46.814883&lon=13.798324&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
+                    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=46.814883&lon=13.798324&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d",
                     Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, 52.5D, 40D, 26.5D,
                     LocalDate.of(2022, Month.DECEMBER, 8), LocalDate.of(2023, Month.APRIL, 2),
                     LocalTime.of(8, 30), LocalTime.of(16, 00),
