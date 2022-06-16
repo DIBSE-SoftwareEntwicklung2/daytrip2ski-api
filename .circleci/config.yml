@@ -7,7 +7,6 @@ orbs:
     cloudrun: circleci/gcp-cloud-run@1.0.1
     gcp-cli: circleci/gcp-cli@2.1
     sonarcloud: sonarsource/sonarcloud@1.1.1
-    maven: circleci/maven@1.3.0
 executors:
     gcloud-executor:
         docker:
@@ -15,6 +14,29 @@ executors:
     machine-executor:
         machine: true
 jobs:
+    build:
+        description: Build the Project
+        docker:
+            - image: sugan1234/vaadinrepo:latest
+        environment:
+            MAVEN_CLI_OPTS: "--batch-mode"
+        steps: 
+            - checkout 
+            - run: mvn $MAVEN_CLI_OPTS clean package -Pproduction -e 
+            - store_artifacts: 
+                path: target 
+                destination: target 
+    test:
+        description: Test the Project
+        docker: 
+            - image: sugan1234/vaadinrepo:latest 
+        steps: 
+            - checkout 
+            - run: mvn test -e 
+            - store_artifacts: 
+                path: reports 
+                destination: reports
+
     static_code_analysis:
         description: Runs a static code analysis
         docker:
@@ -70,8 +92,21 @@ jobs:
 workflows: 
     version: 2
     workflow: 
-        jobs:
-        - maven/test
+        jobs: 
+        - build 
+        - test: 
+            requires: 
+                - build
+        - static_code_analysis:
+            context: SonarCloud
+            requires: 
+                - build
+        - build_push_image_gcr:
+            requires: 
+                - build 
+        - gcp_cloudrun_deploy: 
+            requires: 
+                - build_push_image_gcr
 
 
 
