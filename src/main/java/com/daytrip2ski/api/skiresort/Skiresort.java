@@ -1,6 +1,10 @@
 package com.daytrip2ski.api.skiresort;
 
 import lombok.*;
+import org.hibernate.annotations.Comment;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,6 +18,8 @@ import java.time.LocalTime;
 @Entity
 @Table
 public class Skiresort {
+    private static String actualWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=#latitude#&lon=#longitude#&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d";
+    private static String forecastWeatherUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?lat=#latitude#&lon=#longitude#&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d";
     @Id
     @SequenceGenerator(
             name = "skiresort_seq",
@@ -47,9 +53,9 @@ public class Skiresort {
     private String webcamUrl;
     @Column(length = 1024)
     private String websiteUrl;
-    @Column(length = 1024)
+    @Transient
     private String weatherActualUrl;
-    @Column(length = 1024)
+    @Transient
     private String weatherForecastUrl;
     private Boolean skiRental;
     private Boolean skiCourse;
@@ -80,7 +86,6 @@ public class Skiresort {
                      Long distanceDifficult,
                      String generalSnowCondition, Long numberOfRestaurants,
                      String webcamUrl, String websiteUrl,
-                     String weatherActualUrl, String weatherForecastUrl,
                      Boolean skiRental, Boolean skiCourse,
                      Boolean familyFriendly, Double priceDayTicketAdults,
                      Double priceDayTicketYouth, Double priceDayTicketChildren,
@@ -108,8 +113,6 @@ public class Skiresort {
         this.numberOfRestaurants = numberOfRestaurants;
         this.webcamUrl = webcamUrl;
         this.websiteUrl = websiteUrl;
-        this.weatherActualUrl = weatherActualUrl;
-        this.weatherForecastUrl = weatherActualUrl;
         this.skiRental = skiRental;
         this.skiCourse = skiCourse;
         this.familyFriendly = familyFriendly;
@@ -124,5 +127,21 @@ public class Skiresort {
         this.remark = remark;
         this.description = description;
         this.isActive = isActive;
+    }
+
+    public String getWeatherActualUrl() {
+        String returnUrl = actualWeatherUrl;
+        returnUrl = returnUrl.replace("#longitude#", this.longitude.toString());
+        returnUrl = returnUrl.replace("#latitude#", this.latitude.toString());
+
+        return returnUrl;
+    }
+
+    public String getWeatherForecastUrl() {
+        String returnUrl = forecastWeatherUrl;
+        returnUrl = returnUrl.replace("#longitude#", this.longitude.toString());
+        returnUrl = returnUrl.replace("#latitude#", this.latitude.toString());
+
+        return returnUrl;
     }
 }
