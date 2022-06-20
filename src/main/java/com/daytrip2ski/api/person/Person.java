@@ -35,8 +35,18 @@ public class Person {
     @NotNull(message="E-Mail is required")
     private String email;
     @NotNull
-    @Temporal(TemporalType.DATE)
     private LocalDate dob;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "score_id",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "person_score_fk"
+            )
+    )
+    private Score score;
+
     @Transient
     private Integer age;
 
@@ -49,6 +59,18 @@ public class Person {
         this.email = email;
         this.dob = dob;
     };
+
+    public Person(String firstName,
+                  String lastName,
+                  String email,
+                  LocalDate dob,
+                  Score score) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dob = dob;
+        this.score = score;
+    }
 
     public Integer getAge() {
         return Period.between(this.dob, LocalDate.now()).getYears();

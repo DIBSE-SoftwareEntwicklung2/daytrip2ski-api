@@ -13,10 +13,23 @@ public class PersonConfig {
     @Bean
     CommandLineRunner insertPersons(PersonRepository repository) {
         return args -> {
+            Score score = new Score(
+                    0.5D,
+                    0.5D,
+                    0.5D,
+                    0.5,
+                    Boolean.TRUE,
+                    Boolean.FALSE,
+                    1000D,
+                    200D,
+                    3D
+            );
+
             Person martin = new Person("Martin",
                                 "Angermair",
                                 "martin.angermair@daytrip2ski.com",
-                                LocalDate.of(1965, Month.SEPTEMBER, 6));
+                                LocalDate.of(1965, Month.SEPTEMBER, 6),
+                                score);
 
             Person max = new Person("Max",
                             "Mustermann",
