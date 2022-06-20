@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,10 @@ public class PersonService {
         Optional<Person> personOptional = personRepository.findPersonByEmail(person.getEmail());
         if (personOptional.isPresent()) {
             throw new IllegalStateException("Email already exists");
+        }
+        if (person.getDob().isBefore(LocalDate.now().minusYears(100L)) ||
+                person.getDob().isAfter(LocalDate.now().minusYears(1L))) {
+            throw new IllegalStateException("Date of Birth not in range");
         }
         personRepository.save(person);
     }
