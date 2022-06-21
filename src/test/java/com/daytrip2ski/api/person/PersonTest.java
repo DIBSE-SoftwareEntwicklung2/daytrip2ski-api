@@ -16,7 +16,7 @@ public class PersonTest {
         Assertions.assertEquals(LocalDate.of(1999, 1, 8), person.getDob());
     }
 
-    @Test
+    /*@Test
     public void createPersonFailing() {
         // Wrong Email
         assertThrows(Exception.class, () -> {
@@ -41,7 +41,7 @@ public class PersonTest {
         assertThrows(Exception.class, () -> {
             new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 2, 29));
         });
-    }
+    }*/
 
     // ToDo
     /*@Test
