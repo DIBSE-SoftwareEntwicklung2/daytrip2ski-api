@@ -26,6 +26,8 @@ jobs:
             - store_artifacts: 
                 path: target 
                 destination: target
+            - store_test_results:
+                  path: test-results
     test:
         description: Test the Project
         docker: 
@@ -37,7 +39,7 @@ jobs:
                 path: reports 
                 destination: reports
             - store_test_results:
-                  path: ~/test-results
+                  path: test-results
 
     static_code_analysis:
         description: Runs a static code analysis
