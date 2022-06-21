@@ -4,16 +4,25 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-public class PersonTest {
+class PersonTest {
     @Test
-    public void createPersonSuccessful() {
+    void createPersonSuccessful() {
         var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
         Assertions.assertEquals("Max", person.getFirstName());
         Assertions.assertEquals("Mustermann", person.getLastName());
         Assertions.assertEquals("max.mustermann@test.com", person.getEmail());
         Assertions.assertEquals(LocalDate.of(1999, 1, 8), person.getDob());
+    }
+
+    @Test
+    void createPersonSuccessfulWithScore() {
+        var score = new Score(1l, 0d, 0d, 0d,0d,false,false,0d,0d, 0d);
+        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), score);
+        Assertions.assertEquals("Max", person.getFirstName());
+        Assertions.assertEquals("Mustermann", person.getLastName());
+        Assertions.assertEquals("max.mustermann@test.com", person.getEmail());
+        Assertions.assertEquals(LocalDate.of(1999, 1, 8), person.getDob());
+        Assertions.assertEquals(score, person.getScore());
     }
 
     /*@Test
