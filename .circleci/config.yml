@@ -26,6 +26,13 @@ jobs:
             - store_artifacts: 
                 path: target 
                 destination: target
+    test:
+        description: Test the Project
+        docker: 
+            - image: sugan1234/vaadinrepo:latest 
+        steps: 
+            - checkout 
+            - run: mvn test -e 
             - run:
                 name: Save test results
                 command: |
@@ -34,13 +41,7 @@ jobs:
                 when: always
             - store_test_results:
                 path: ~/test-results
-    test:
-        description: Test the Project
-        docker: 
-            - image: sugan1234/vaadinrepo:latest 
-        steps: 
-            - checkout 
-            - run: mvn test -e 
+                
             - store_artifacts: 
                 path: reports 
                 destination: reports
