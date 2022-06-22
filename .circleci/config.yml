@@ -53,9 +53,7 @@ jobs:
             - image: sugan1234/vaadinrepo:latest
         steps:
             - checkout
-            - run:
-                name: Analyze on SonarCloud
-                command: mvn verify sonar:sonar -Dsonar.projectKey=DIBSE-SoftwareEntwicklung2_daytrip2ski-api
+            - run: mvn test -e 
             - run:
                 name: Save test results
                 command: |
@@ -64,6 +62,9 @@ jobs:
                 when: always
             - store_test_results:
                 path: ~/test-results
+            - run:
+                name: Analyze on SonarCloud
+                command: mvn verify sonar:sonar -Dsonar.projectKey=DIBSE-SoftwareEntwicklung2_daytrip2ski-api
 
     build_push_image_gcr:
         description: Build docker image and push to gcr registry 
