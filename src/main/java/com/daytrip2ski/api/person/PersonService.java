@@ -2,13 +2,16 @@ package com.daytrip2ski.api.person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Validated
 public class PersonService {
     private final PersonRepository personRepository;
 
@@ -21,7 +24,7 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public void addNewPerson(Person person) {
+    public void addNewPerson(@Valid Person person) {
         Optional<Person> personOptional = personRepository.findPersonByEmail(person.getEmail());
         if (personOptional.isPresent()) {
             throw new IllegalStateException("Email already exists");

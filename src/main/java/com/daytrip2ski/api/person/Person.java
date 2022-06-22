@@ -1,9 +1,12 @@
 package com.daytrip2ski.api.person;
 
 import lombok.*;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.Period;
@@ -15,6 +18,7 @@ import java.time.Period;
 @ToString
 @Entity
 @Table
+@Validated
 public class Person {
     @Id
     @SequenceGenerator(
@@ -27,12 +31,12 @@ public class Person {
             generator = "person_seq"
     )
     private Long id;
-    @NotNull(message="First Name is required")
+    @NotBlank(message="First Name is required")
     private String firstName;
-    @NotNull(message="Last Name is required")
+    @NotBlank(message="Last Name is required")
     private String lastName;
     @Email(message="Not a valid E-Mail address")
-    @NotNull(message="E-Mail is required")
+    @NotBlank(message="E-Mail is required")
     private String email;
     @NotNull
     private LocalDate dob;
@@ -45,6 +49,8 @@ public class Person {
                     name = "person_score_fk"
             )
     )
+
+    @Valid
     private Score score;
 
     @Transient
