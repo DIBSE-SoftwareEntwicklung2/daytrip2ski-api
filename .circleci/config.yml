@@ -117,10 +117,10 @@ workflows:
         - static_code_analysis:
             context: SonarCloud
             requires: 
-                - build
+                - test
         - build_push_image_gcr:
             requires: 
-                - build 
+                - test 
         - gcp_cloudrun_deploy: 
             requires: 
                 - build_push_image_gcr
