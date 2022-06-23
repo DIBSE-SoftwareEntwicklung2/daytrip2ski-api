@@ -33,6 +33,15 @@ jobs:
         steps: 
             - checkout 
             - run: mvn test -e 
+            - run:
+                name: Save test results
+                command: |
+                    mkdir -p ~/test-results/junit/
+                    find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+                when: always
+            - store_test_results:
+                path: ~/test-results
+
             - store_artifacts: 
                 path: reports 
                 destination: reports
@@ -44,6 +53,15 @@ jobs:
             - image: sugan1234/vaadinrepo:latest
         steps:
             - checkout
+            - run: mvn test -e 
+            - run:
+                name: Save test results
+                command: |
+                    mkdir -p ~/test-results/junit/
+                    find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+                when: always
+            - store_test_results:
+                path: ~/test-results
             - run:
                 name: Analyze on SonarCloud
                 command: mvn verify sonar:sonar -Dsonar.projectKey=DIBSE-SoftwareEntwicklung2_daytrip2ski-api
@@ -100,10 +118,10 @@ workflows:
         - static_code_analysis:
             context: SonarCloud
             requires: 
-                - build
+                - test
         - build_push_image_gcr:
             requires: 
-                - build 
+                - test 
         - gcp_cloudrun_deploy: 
             requires: 
                 - build_push_image_gcr
