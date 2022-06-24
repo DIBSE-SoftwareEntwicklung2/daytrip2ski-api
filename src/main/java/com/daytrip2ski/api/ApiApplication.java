@@ -26,7 +26,6 @@ public class ApiApplication {
 	public Docket swaggerConfiguration() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.paths(PathSelectors.ant("/api/v1/*"))
 				.apis(RequestHandlerSelectors.basePackage("com.daytrip2ski.api"))
 				.build()
 				.apiInfo(apiDetails());
