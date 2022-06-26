@@ -24,7 +24,25 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public void addNewPerson(@Valid Person person) {
+    public Optional<Person> findPersonById(Long id) {
+        Optional<Person> personOptional = personRepository.findById(id);
+        if (!personOptional.isPresent()) {
+            throw new IllegalStateException("Person has no scoring");
+        }
+        return personOptional;
+    }
+
+    public Optional<Person> findPersonByEmail(String email) {return personRepository.findPersonByEmail(email);}
+
+    public Optional<Score> findPersonScoreById(Long id) {
+        Optional<Score> personOptional = personRepository.findPersonScoreById(id);
+        if (!personOptional.isPresent()) {
+            throw new IllegalStateException("Person has no scoring");
+        }
+        return personOptional;
+    }
+
+    public void addNewPerson(Person person) {
         Optional<Person> personOptional = personRepository.findPersonByEmail(person.getEmail());
         if (personOptional.isPresent()) {
             throw new IllegalStateException("Email already exists");
@@ -36,6 +54,15 @@ public class PersonService {
         personRepository.save(person);
     }
 
+    public void savePerson(Person person) {
+        Optional<Person> personOptional = this.findPersonById(person.getId());
+        if (!personOptional.isPresent()) {
+            throw new IllegalStateException("Person not exists!");
+        }
+
+        personRepository.save(person);
+    }
+
     public void deletePerson(Long personId) {
         if (!personRepository.existsById(personId)) {
             throw new IllegalStateException(
@@ -43,10 +70,5 @@ public class PersonService {
             );
         }
         personRepository.deleteById(personId);
-    }
-
-    @Transactional
-    public void updatePerson(Person person) {
-
     }
 }
