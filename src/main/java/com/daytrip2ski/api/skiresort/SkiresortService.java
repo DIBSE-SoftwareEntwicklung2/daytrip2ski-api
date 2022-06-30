@@ -25,6 +25,7 @@ public class SkiresortService {
             throw new IllegalStateException("Skiresort not there");
         }
         return skiresortOptional;
+    }
 
     public List<Skiresort> findSkiresortsByMaxDistanceEasy() {
         return skiresortRepository.findSkiresortByMaxDistanceEasy();

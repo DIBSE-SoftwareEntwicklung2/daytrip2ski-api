@@ -28,6 +28,7 @@ public class SkiresortController {
     @GetMapping(path = "{id}")
     public Optional<Skiresort> findSkiresortById(@PathVariable("id") Long id) {
         return skiresortService.findSkiresortById(id);
+    }
 
     @GetMapping(path = "maxdistanceeasy")
     public List<Skiresort> findSkiresortByMaxDistanceEasy() {
