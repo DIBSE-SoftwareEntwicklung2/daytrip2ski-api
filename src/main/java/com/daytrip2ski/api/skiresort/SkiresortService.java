@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SkiresortService {
@@ -16,5 +17,29 @@ public class SkiresortService {
 
     public List<Skiresort> getSkiresorts() {
         return skiresortRepository.findAll();
+    }
+
+    public List<Skiresort> findSkiresortsByMaxDistanceEasy() {
+        return skiresortRepository.findSkiresortByMaxDistanceEasy();
+    }
+
+    public List<Skiresort> findSkiresortsByMinDistanceEasy() {
+        return skiresortRepository.findSkiresortByMinDistanceEasy();
+    }
+
+    public List<Skiresort> findSkiresortsByMaxDistanceIntermediate() {
+        return skiresortRepository.findSkiresortByMaxDistanceIntermediate();
+    }
+
+    public List<Skiresort> findSkiresortsByMinDistanceIntermediate() {
+        return skiresortRepository.findSkiresortByMinDistanceIntermediate();
+    }
+
+    public List<Skiresort> findSkiresortsByMaxDistanceDifficult() {
+        return skiresortRepository.findSkiresortByMaxDistanceDifficult();
+    }
+
+    public List<Skiresort> findSkiresortsByMinDistanceDifficult() {
+        return skiresortRepository.findSkiresortByMinDistanceDifficult();
     }
 }
