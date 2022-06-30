@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SkiresortService {
@@ -16,5 +17,13 @@ public class SkiresortService {
 
     public List<Skiresort> getSkiresorts() {
         return skiresortRepository.findAll();
+    }
+
+    public Optional<Skiresort> findSkiresortById(Long id) {
+        Optional<Skiresort> skiresortOptional = skiresortRepository.findById(id);
+        if (!skiresortOptional.isPresent()) {
+            throw new IllegalStateException("Skiresort not there");
+        }
+        return skiresortOptional;
     }
 }
