@@ -29,12 +29,15 @@ public class PersonConfig {
                                 "Angermair",
                                 "martin.angermair@daytrip2ski.com",
                                 LocalDate.of(1965, Month.SEPTEMBER, 6),
+                    48.13743, 11.57549,
                                 score);
 
             Person max = new Person("Max",
                             "Mustermann",
                             "max.mustermann@daytrip2ski.com",
-                            LocalDate.of(2000, Month.APRIL, 1));
+                            LocalDate.of(2000, Month.APRIL, 1),
+                    45.4654219, 9.1859243
+            );
 
             repository.saveAll(
                     List.of(martin, max)
