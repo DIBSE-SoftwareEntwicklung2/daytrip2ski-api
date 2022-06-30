@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import javax.validation.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,12 +35,12 @@ public class PersonController {
     }
 
     @PostMapping(path = "register")
-    public void registerNewPerson(@RequestBody Person person) {
+    public void registerNewPerson(@Valid @RequestBody Person person) {
         personService.addNewPerson(person);
     }
 
     @PostMapping(path = "save")
-    public void savePerson(@RequestBody Person person) { personService.savePerson(person);}
+    public void savePerson(@Valid @RequestBody Person person) { personService.savePerson(person);}
 
     @DeleteMapping(path ="{personId}")
     public void deletePerson(@PathVariable("personId") Long personId) {

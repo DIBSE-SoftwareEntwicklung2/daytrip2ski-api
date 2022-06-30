@@ -1,10 +1,21 @@
 package com.daytrip2ski.api.person;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+
+import javax.validation.Validation;
+import javax.validation.Validator;
 import java.time.LocalDate;
+import java.time.Period;
 
 class PersonTest {
+    private static Validator validator;
+    @BeforeAll
+    public static void setup() {
+        validator = Validation.buildDefaultValidatorFactory().getValidator();
+    }
+
     @Test
     void createPersonSuccessful() {
         var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
@@ -12,6 +23,10 @@ class PersonTest {
         Assertions.assertEquals("Mustermann", person.getLastName());
         Assertions.assertEquals("max.mustermann@test.com", person.getEmail());
         Assertions.assertEquals(LocalDate.of(1999, 1, 8), person.getDob());
+        Assertions.assertEquals(null, person.getScore());
+
+        var violations = validator.validate(person);
+        Assertions.assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -23,48 +38,84 @@ class PersonTest {
         Assertions.assertEquals("max.mustermann@test.com", person.getEmail());
         Assertions.assertEquals(LocalDate.of(1999, 1, 8), person.getDob());
         Assertions.assertEquals(score, person.getScore());
+
+        var  violations = validator.validate(person);
+        Assertions.assertTrue(violations.isEmpty());
+    }
+
+    @Test
+    public void createPersonWrongEmail() {
+        var person = new Person("Max", "Mustermann", "max.mustermanntest.com", LocalDate.of(1999, 1, 8));
+        var violations = validator.validate(person);
+        Assertions.assertFalse(violations.isEmpty());
+        Assertions.assertEquals(violations.size(), 1);
+        var first = violations.iterator().next();
+        Assertions.assertEquals(first.getMessage(), "Not a valid E-Mail address");
+    }
+
+    @Test
+    public void createPersonWrongFirstName() {
+        var person = new Person("", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        var violations = validator.validate(person);
+        Assertions.assertFalse(violations.isEmpty());
+        Assertions.assertEquals(violations.size(), 1);
+        var first = violations.iterator().next();
+        Assertions.assertEquals(first.getMessage(), "First Name is required");
+    }
+
+    @Test
+    public void createPersonWrongLastName() {
+        var person = new Person("Max", "", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        var violations = validator.validate(person);
+        Assertions.assertFalse(violations.isEmpty());
+        Assertions.assertEquals(violations.size(), 1);
+        var first = violations.iterator().next();
+        Assertions.assertEquals(first.getMessage(), "Last Name is required");
     }
 
     /*@Test
-    public void createPersonFailing() {
-        // Wrong Email
-        assertThrows(Exception.class, () -> {
-            new Person("Max", "Mustermann", "max.mustermanntest.com", LocalDate.of(1999, 1, 8));
-        });
-        assertThrows(Exception.class, () -> {
-            new Person("Max", "Mustermann", "max.mustermann@testcom", LocalDate.of(1999, 1, 8));
-        });
+    public void createPersonDayOfBirth() {
+        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 2, 29));
+        Set<ConstraintViolation<Person>> violations = validator.validate(person);
+        Assertions.assertFalse(violations.isEmpty());
+        Assertions.assertEquals(violations.size(), 1);
+        var first = violations.iterator().next();
+        Assertions.assertEquals(first.getMessage(), "Not a valid E-Mail address");
 
-        // Empty name
-        assertThrows(Exception.class, () -> {
-            new Person("", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
-        });
-        assertThrows(Exception.class, () -> {
-            new Person("Max", "", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
-        });
+        person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().plusDays(1));
+        violations = validator.validate(person);
+        Assertions.assertFalse(violations.isEmpty());
+        Assertions.assertEquals(violations.size(), 1);
+        first = violations.iterator().next();
+        Assertions.assertEquals(first.getMessage(), "Not a valid E-Mail address");
+    }*/
 
-        // Wrong Birthday
+
+        /*// Wrong Birthday
         assertThrows(Exception.class, () -> {
             new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().plusDays(1));
         });
         assertThrows(Exception.class, () -> {
             new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 2, 29));
-        });
-    }*/
+        });*/
 
-    // ToDo
-    /*@Test
+    @Test
     public void getPersonsAge() {
         // Arrange
-        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 12));
-        var person2 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 14));
+        var date = LocalDate.now().minusYears(20).minusDays(1);
+        var date2 = LocalDate.now().minusYears(20).plusDays(1);
+        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", date);
+        var person2 = new Person("Max", "Mustermann", "max.mustermann@test.com", date2);
 
         // Act
         var actualAge = person.getAge();
         var actualAge2 = person2.getAge();
 
+        var expectedAge = Period.between(date, LocalDate.now()).getYears();
+        var expectedAge2 = Period.between(date2, LocalDate.now()).getYears();
+
         // Assert
-        Assertions.assertEquals(21, actualAge);
-        Assertions.assertEquals(20, actualAge2);
-    }*/
+        Assertions.assertEquals(expectedAge, actualAge);
+        Assertions.assertEquals(expectedAge2, actualAge2);
+    }
 }

@@ -45,6 +45,13 @@ class PersonControllerTest {
     }
 
     @Test
+    void addNewPersonFail() {
+        Person person = new Person("Max", "", "max.mustermanntest.com", LocalDate.of(1999, 1, 8));
+        personController.registerNewPerson(person);
+        verify(personService, times(1)).addNewPerson(person);
+    }
+
+    @Test
     void deletePerson() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
         personController.deletePerson(person.getId());
