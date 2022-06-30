@@ -40,6 +40,8 @@ public class Person {
     private String email;
     @NotNull
     private LocalDate dob;
+    private Double homeLatitude;
+    private Double homeLongitude;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(
@@ -64,8 +66,7 @@ public class Person {
         this.lastName = lastName;
         this.email = email;
         this.dob = dob;
-    };
-
+    }
     public Person(String firstName,
                   String lastName,
                   String email,
@@ -75,6 +76,35 @@ public class Person {
         this.lastName = lastName;
         this.email = email;
         this.dob = dob;
+        this.score = score;
+    }
+    public Person(String firstName,
+                  String lastName,
+                  String email,
+                  LocalDate dob,
+                  Double homeLatitude,
+                  Double homeLongitude) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dob = dob;
+        this.homeLatitude = homeLatitude;
+        this.homeLongitude = homeLongitude;
+    }
+
+    public Person(String firstName,
+                  String lastName,
+                  String email,
+                  LocalDate dob,
+                  Double homeLatitude,
+                  Double homeLongitude,
+                  Score score) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dob = dob;
+        this.homeLatitude = homeLatitude;
+        this.homeLongitude = homeLongitude;
         this.score = score;
     }
 

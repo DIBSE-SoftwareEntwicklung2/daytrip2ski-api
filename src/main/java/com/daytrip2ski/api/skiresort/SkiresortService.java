@@ -25,5 +25,28 @@ public class SkiresortService {
             throw new IllegalStateException("Skiresort not there");
         }
         return skiresortOptional;
+
+    public List<Skiresort> findSkiresortsByMaxDistanceEasy() {
+        return skiresortRepository.findSkiresortByMaxDistanceEasy();
+    }
+
+    public List<Skiresort> findSkiresortsByMinDistanceEasy() {
+        return skiresortRepository.findSkiresortByMinDistanceEasy();
+    }
+
+    public List<Skiresort> findSkiresortsByMaxDistanceIntermediate() {
+        return skiresortRepository.findSkiresortByMaxDistanceIntermediate();
+    }
+
+    public List<Skiresort> findSkiresortsByMinDistanceIntermediate() {
+        return skiresortRepository.findSkiresortByMinDistanceIntermediate();
+    }
+
+    public List<Skiresort> findSkiresortsByMaxDistanceDifficult() {
+        return skiresortRepository.findSkiresortByMaxDistanceDifficult();
+    }
+
+    public List<Skiresort> findSkiresortsByMinDistanceDifficult() {
+        return skiresortRepository.findSkiresortByMinDistanceDifficult();
     }
 }

@@ -28,5 +28,34 @@ public class SkiresortController {
     @GetMapping(path = "{id}")
     public Optional<Skiresort> findSkiresortById(@PathVariable("id") Long id) {
         return skiresortService.findSkiresortById(id);
+
+    @GetMapping(path = "maxdistanceeasy")
+    public List<Skiresort> findSkiresortByMaxDistanceEasy() {
+        return skiresortService.findSkiresortsByMaxDistanceEasy();
+    }
+
+    @GetMapping(path = "mindistanceeasy")
+    public List<Skiresort> findSkiresortByMinDistanceEasy() {
+        return skiresortService.findSkiresortsByMinDistanceEasy();
+    }
+
+    @GetMapping(path = "maxdistanceintermediate")
+    public List<Skiresort> findSkiresortByMaxDistanceIntermediate() {
+        return skiresortService.findSkiresortsByMaxDistanceIntermediate();
+    }
+
+    @GetMapping(path = "mindistanceintermediate")
+    public List<Skiresort> findSkiresortByMinDistanceIntermediate() {
+        return skiresortService.findSkiresortsByMinDistanceIntermediate();
+    }
+
+    @GetMapping(path = "maxdistancedifficult")
+    public List<Skiresort> findSkiresortByMaxDistanceDifficult() {
+        return skiresortService.findSkiresortsByMaxDistanceDifficult();
+    }
+
+    @GetMapping(path = "mindistancedifficult")
+    public List<Skiresort> findSkiresortByMinDistanceDifficult() {
+        return skiresortService.findSkiresortsByMinDistanceDifficult();
     }
 }
