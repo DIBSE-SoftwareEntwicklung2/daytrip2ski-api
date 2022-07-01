@@ -1,19 +1,15 @@
 package com.daytrip2ski.api.skiresort;
 
 import lombok.*;
-import org.hibernate.annotations.Comment;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Entity
 @Table
@@ -30,49 +26,96 @@ public class Skiresort {
             strategy = GenerationType.SEQUENCE,
             generator = "skiresort_seq"
     )
+    @Column(updatable = false)
     private Long id;
+
+    @Column(length = 1024, nullable = false)
     private String name;
+
+    @NotNull(message = "GPS coordinate required")
+    @Column(nullable = false)
     private Double latitude;
+
+    @NotNull(message = "GPS coordinate required")
+    @Column(nullable = false)
     private Double longitude;
+
     private Long altitudeValley;
+
     private Long altitudeMountain;
-    private Long numberOfCogRailway;
-    private Long numberOfFunicular;
-    private Long numberOfCableCar;
-    private Long numberOfGondolaLift;
-    private Long numberOfChairLift;
-    private Long numberOfTBarLift;
-    private Long numberOfBabyLift;
-    private Long numberOfMovingCarpet;
-    private Long distanceEasy;
-    private Long distanceIntermediate;
-    private Long distanceDifficult;
+
+    private Long numberOfCogRailway = 0L;
+
+    private Long numberOfFunicular = 0L;
+
+    private Long numberOfCableCar = 0L;
+
+    private Long numberOfGondolaLift = 0L;
+
+    private Long numberOfChairLift = 0L;
+
+    private Long numberOfTBarLift = 0L;
+
+    private Long numberOfBabyLift = 0L;
+
+    private Long numberOfMovingCarpet = 0L;
+
+    private Long totalNumbersOfClimbingAids;
+
+    private Long distanceEasy = 0L;
+
+    private Long distanceIntermediate = 0L;
+
+    private Long distanceDifficult = 0L;
+
+    @Column(updatable = false)
+    private Long totalSlopeDistance;
+
     private String generalSnowCondition;
+
     private Long numberOfRestaurants;
+
     @Column(length = 1024)
     private String webcamUrl;
+
     @Column(length = 1024)
     private String websiteUrl;
+
     @Transient
     private String weatherActualUrl;
+
     @Transient
     private String weatherForecastUrl;
+
     private Boolean skiRental;
+
     private Boolean skiCourse;
+
     private Boolean familyFriendly;
+
     private Double priceDayTicketAdults;
+
     private Double priceDayTicketYouth;
+
     private Double priceDayTicketChildren;
+
     private LocalDate seasonFrom;
+
     private LocalDate seasonTo;
+
     private LocalTime openingHoursFrom;
+
     private LocalTime openingHoursTo;
+
     @Lob
     private String openingHoursNote;
+
     @Lob
     private String remark;
+
     @Lob
     private String description;
+
     private Boolean isActive;
 
     public Skiresort(String name,
@@ -143,5 +186,21 @@ public class Skiresort {
         returnUrl = returnUrl.replace("#latitude#", this.latitude.toString());
 
         return returnUrl;
+    }
+
+    public Long getTotalSlopeDistance() {
+        return this.distanceEasy + this.distanceIntermediate + this.distanceDifficult;
+    }
+
+    public void setTotalNumbersOfClimbingAids() {
+        this.totalNumbersOfClimbingAids = this.numberOfBabyLift + this.numberOfChairLift + this.numberOfGondolaLift
+                + this.numberOfCableCar + this.numberOfFunicular + this.numberOfCogRailway
+                + this.numberOfMovingCarpet + this.numberOfTBarLift;
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void calculateTotalNumbersOfClimbingAids() {
+        this.setTotalNumbersOfClimbingAids();
     }
 }

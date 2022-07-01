@@ -1,6 +1,5 @@
 package com.daytrip2ski.api.skiresort;
 
-import com.daytrip2ski.api.person.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,5 +57,10 @@ public class SkiresortController {
     @GetMapping(path = "mindistancedifficult")
     public List<Skiresort> findSkiresortByMinDistanceDifficult() {
         return skiresortService.findSkiresortsByMinDistanceDifficult();
+    }
+
+    @GetMapping(path = "maxnumbersofclimbingaids")
+    public Long findMaxNumbersOfClimbingAids() {
+        return skiresortService.findMaxNumbersOfClimbingAids();
     }
 }

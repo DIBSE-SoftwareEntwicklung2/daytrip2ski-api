@@ -50,4 +50,8 @@ public class SkiresortService {
     public List<Skiresort> findSkiresortsByMinDistanceDifficult() {
         return skiresortRepository.findSkiresortByMinDistanceDifficult();
     }
+
+    public Long findMaxNumbersOfClimbingAids() {
+        return skiresortRepository.findMaxNumbersOfClimbingAids();
+    }
 }
