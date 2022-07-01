@@ -18,7 +18,7 @@ class PersonTest {
 
     @Test
     void createPersonSuccessful() {
-        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         Assertions.assertEquals("Max", person.getFirstName());
         Assertions.assertEquals("Mustermann", person.getLastName());
         Assertions.assertEquals("max.mustermann@test.com", person.getEmail());
@@ -26,13 +26,13 @@ class PersonTest {
         Assertions.assertEquals(null, person.getScore());
 
         var violations = validator.validate(person);
-        Assertions.assertTrue(violations.isEmpty());
+        Assertions.assertTrue(violations.isEmpty(), violations.toString());
     }
 
     @Test
     void createPersonSuccessfulWithScore() {
         var score = new Score(1l, 0d, 0d, 0d,0d,false,false,0d,0d, 0d);
-        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), score);
+        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9, score);
         Assertions.assertEquals("Max", person.getFirstName());
         Assertions.assertEquals("Mustermann", person.getLastName());
         Assertions.assertEquals("max.mustermann@test.com", person.getEmail());
@@ -40,37 +40,49 @@ class PersonTest {
         Assertions.assertEquals(score, person.getScore());
 
         var  violations = validator.validate(person);
-        Assertions.assertTrue(violations.isEmpty());
+        Assertions.assertTrue(violations.isEmpty(), violations.toString());
     }
 
     @Test
     public void createPersonWrongEmail() {
-        var person = new Person("Max", "Mustermann", "max.mustermanntest.com", LocalDate.of(1999, 1, 8));
+        var person = new Person("Max", "Mustermann", "max.mustermanntest.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         var violations = validator.validate(person);
         Assertions.assertFalse(violations.isEmpty());
-        Assertions.assertEquals(violations.size(), 1);
+        Assertions.assertEquals(violations.size(), 1, "Only Email should be invalid: " + violations);
         var first = violations.iterator().next();
         Assertions.assertEquals(first.getMessage(), "Not a valid E-Mail address");
     }
 
     @Test
     public void createPersonWrongFirstName() {
-        var person = new Person("", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        var person = new Person("", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         var violations = validator.validate(person);
         Assertions.assertFalse(violations.isEmpty());
-        Assertions.assertEquals(violations.size(), 1);
+        Assertions.assertEquals(violations.size(), 1, "Only FirstName should be invalid: " + violations);
         var first = violations.iterator().next();
         Assertions.assertEquals(first.getMessage(), "First Name is required");
     }
 
     @Test
     public void createPersonWrongLastName() {
-        var person = new Person("Max", "", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        var person = new Person("Max", "", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         var violations = validator.validate(person);
         Assertions.assertFalse(violations.isEmpty());
-        Assertions.assertEquals(violations.size(), 1);
+        Assertions.assertEquals(violations.size(), 1, "Only LastName should be invalid: " + violations);
         var first = violations.iterator().next();
         Assertions.assertEquals(first.getMessage(), "Last Name is required");
+    }
+
+    @Test
+    public void createPersonNoHomePosition() {
+        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        var violations = validator.validate(person);
+        Assertions.assertFalse(violations.isEmpty());
+        Assertions.assertEquals(violations.size(), 2, "Only home positions should be invalid: " + violations);
+        var first = violations.iterator().next();
+        Assertions.assertEquals(first.getMessage(), "Homepositon required");
+        var second = violations.iterator().next();
+        Assertions.assertEquals(second.getMessage(), "Homepositon required");
     }
 
     /*@Test
