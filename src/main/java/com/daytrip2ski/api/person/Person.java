@@ -14,7 +14,6 @@ import java.time.Period;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Entity
 @Table
@@ -30,17 +29,32 @@ public class Person {
             strategy = GenerationType.SEQUENCE,
             generator = "person_seq"
     )
+    @Column(name = "id", updatable = false)
     private Long id;
+
     @NotBlank(message="First Name is required")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+
     @NotBlank(message="Last Name is required")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
+
     @Email(message="Not a valid E-Mail address")
     @NotBlank(message="E-Mail is required")
+    @Column(name = "email", nullable = false)
     private String email;
+
     @NotNull
+    @Column(name = "date_of_birth", nullable = false)
     private LocalDate dob;
+
+    @NotNull(message="Homepositon required")
+    @Column(name = "home_latitude", nullable = false)
     private Double homeLatitude;
+
+    @NotNull(message="Homepositon required")
+    @Column(name = "home_longitude", nullable = false)
     private Double homeLongitude;
 
     @OneToOne(cascade = CascadeType.ALL)
