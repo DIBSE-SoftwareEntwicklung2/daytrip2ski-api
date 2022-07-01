@@ -46,7 +46,7 @@ public class Person {
     private String email;
 
     @NotNull
-    @Column(name = "date_of_birth", nullable = false)
+    //@Column(name = "date_of_birth", nullable = false)
     private LocalDate dob;
 
     @NotNull(message="Homepositon required")
