@@ -54,4 +54,8 @@ public class SkiresortService {
     public Long findMaxNumbersOfClimbingAids() {
         return skiresortRepository.findMaxNumbersOfClimbingAids();
     }
+
+    public Long findMinNumbersOfClimbingAids() {
+        return skiresortRepository.findMinNumbersOfClimbingAids();
+    }
 }

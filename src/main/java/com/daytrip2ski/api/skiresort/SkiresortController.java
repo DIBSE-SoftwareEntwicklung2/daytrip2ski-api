@@ -63,4 +63,9 @@ public class SkiresortController {
     public Long findMaxNumbersOfClimbingAids() {
         return skiresortService.findMaxNumbersOfClimbingAids();
     }
+
+    @GetMapping(path = "minnumbersofclimbingaids")
+    public Long findMinNumbersOfClimbingAids() {
+        return skiresortService.findMinNumbersOfClimbingAids();
+    }
 }

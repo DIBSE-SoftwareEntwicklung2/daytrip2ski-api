@@ -29,4 +29,7 @@ public interface SkiresortRepository extends JpaRepository<Skiresort, Long> {
 
     @Query("SELECT max(s.totalNumbersOfClimbingAids) FROM Skiresort s")
     Long findMaxNumbersOfClimbingAids();
+
+    @Query("SELECT min(s.totalNumbersOfClimbingAids) FROM Skiresort s")
+    Long findMinNumbersOfClimbingAids();
 }
