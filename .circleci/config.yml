@@ -7,6 +7,7 @@ orbs:
     cloudrun: circleci/gcp-cloud-run@1.0.1
     gcp-cli: circleci/gcp-cli@2.1
     sonarcloud: sonarsource/sonarcloud@1.1.1
+    browser-tools: circleci/browser-tools@1.2.3
 executors:
     gcloud-executor:
         docker:
@@ -31,7 +32,8 @@ jobs:
         docker: 
             - image: sugan1234/vaadinrepo:latest 
         steps: 
-            - checkout 
+            - checkout
+            - browser-tools/install-browser-tools
             - run: mvn test -e 
             - run:
                 name: Save test results
