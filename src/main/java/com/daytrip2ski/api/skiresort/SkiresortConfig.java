@@ -28,7 +28,7 @@ public class SkiresortConfig {
                     "The ski resort KitzSki – Kitzbühel/\u200BKirchberg is located in Kitzbühel (Austria, Tyrol (Tirol), Tiroler Unterland, Kitzbühel (District)) and in the Brixental (Austria, Tyrol (Tirol), Tiroler Unterland, Kitzbüheler Alpen). For skiing and snowboarding, there are 188 km of slopes and 45 km of ski routes available. 57 lifts transport the guests. The winter sports area is situated between the elevations of 800 and 2,000 m.",
                     Boolean.TRUE);
 
-            Skiresort wengen = new Skiresort("Grindelwald/Wengen", 46.605000D, 7.921340D, 796L, 2400L,
+            Skiresort wengen = new Skiresort("Grindelwald/Wengen", 46.6765034325D, 7.86640045D, 796L, 2400L,
                     0L, 0L, 1L, 2L, 10L, 3L, 5L, 3L,
                     33L, 56L, 13L, null, 8L,
                     "https://www.jungfrau.ch/de-ch/live/webcams/#webcam-grindelwald-first",
@@ -133,7 +133,7 @@ public class SkiresortConfig {
                     "The ski resort Tignes/\u200BVal d'Isère is located in the Tarentaise (France, Auvergne-Rhône-Alpes, Savoie Mont Blanc, Savoie, Albertville). For skiing and snowboarding, there are 300 km of slopes and 20 km of ski routes available. 82 lifts transport the guests. The winter sports area is situated between the elevations of 1,550 and 3,456 m.",
                     Boolean.TRUE);
 
-            Skiresort kleinkirchheim = new Skiresort("Bad Kleinkirchheim", 46.814883D, 13.798324D, 1087L, 2055L,
+            Skiresort kleinkirchheim = new Skiresort("Bad Kleinkirchheim", 46.8144214D, 13.7983599D, 1087L, 2055L,
                     0L, 0L, 0L, 4L, 8L, 9L, 1L, 0L,
                     18L, 77L, 8L, null, 7L,
                     "https://www.valdisere.com/en/webcam/webcam-village/",
