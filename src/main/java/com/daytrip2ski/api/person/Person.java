@@ -75,26 +75,6 @@ public class Person {
     public Person(String firstName,
                   String lastName,
                   String email,
-                  LocalDate dob) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.dob = dob;
-    }
-    public Person(String firstName,
-                  String lastName,
-                  String email,
-                  LocalDate dob,
-                  Score score) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.dob = dob;
-        this.score = score;
-    }
-    public Person(String firstName,
-                  String lastName,
-                  String email,
                   LocalDate dob,
                   Double homeLatitude,
                   Double homeLongitude) {

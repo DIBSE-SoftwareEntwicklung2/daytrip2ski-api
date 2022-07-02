@@ -27,7 +27,7 @@ class PersonControllerTest {
 
     @Test
     void getPersons() {
-        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         List<Person> persons = new ArrayList<>();
         persons.add(person);
         when(personService.getPersons()).thenReturn(persons);
@@ -39,21 +39,21 @@ class PersonControllerTest {
 
     @Test
     void addNewPerson() {
-        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         personController.registerNewPerson(person);
         verify(personService, times(1)).addNewPerson(person);
     }
 
     @Test
     void addNewPersonFail() {
-        Person person = new Person("Max", "", "max.mustermanntest.com", LocalDate.of(1999, 1, 8));
+        Person person = new Person("Max", "", "max.mustermanntest.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         personController.registerNewPerson(person);
         verify(personService, times(1)).addNewPerson(person);
     }
 
     @Test
     void deletePerson() {
-        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         personController.deletePerson(person.getId());
         verify(personService, times(1)).deletePerson(person.getId());
     }

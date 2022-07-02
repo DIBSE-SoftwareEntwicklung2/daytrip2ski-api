@@ -75,7 +75,7 @@ class PersonTest {
 
     @Test
     public void createPersonNoHomePosition() {
-        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), null, null);
         var violations = validator.validate(person);
         Assertions.assertFalse(violations.isEmpty());
         Assertions.assertEquals(violations.size(), 2, "Only home positions should be invalid: " + violations);
@@ -116,8 +116,8 @@ class PersonTest {
         // Arrange
         var date = LocalDate.now().minusYears(20).minusDays(1);
         var date2 = LocalDate.now().minusYears(20).plusDays(1);
-        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", date);
-        var person2 = new Person("Max", "Mustermann", "max.mustermann@test.com", date2);
+        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", date, 7.8, 8.9);
+        var person2 = new Person("Max", "Mustermann", "max.mustermann@test.com", date2, 7.8, 8.9);
 
         // Act
         var actualAge = person.getAge();

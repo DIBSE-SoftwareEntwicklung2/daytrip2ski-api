@@ -32,7 +32,7 @@ class PersonServiceTest {
 
     @Test
     void getPersons() {
-        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         List<Person> persons = new ArrayList<>();
         persons.add(person);
         when(personRepository.findAll()).thenReturn(persons);
@@ -44,14 +44,14 @@ class PersonServiceTest {
 
     @Test
     void addNewPersonSuccessful() {
-        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         personService.addNewPerson(person);
         verify(personRepository, times(1)).save(person);
     }
 
     @Test
     void addNewPersonEmailExists() {
-        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         when(personRepository.findPersonByEmail(person.getEmail())).thenReturn(Optional.of(person));
         Exception ex = assertThrows(IllegalStateException.class, () -> {
             personService.addNewPerson(person);
@@ -62,10 +62,10 @@ class PersonServiceTest {
 
     @Test
     void addNewPersonDayOfBirth() {
-        Person personFail1 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().minusYears(101));
-        Person personFail2 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now());
-        Person personSuccess1 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().minusYears(99));
-        Person personSuccess2 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().minusYears(2));
+        Person personFail1 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().minusYears(101), 7.8, 8.9);
+        Person personFail2 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now(), 7.8, 8.9);
+        Person personSuccess1 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().minusYears(99), 7.8, 8.9);
+        Person personSuccess2 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().minusYears(2), 7.8, 8.9);
 
         personService.addNewPerson(personSuccess1);
         personService.addNewPerson(personSuccess2);
@@ -84,7 +84,7 @@ class PersonServiceTest {
 
     @Test
     void deletePersonSuccess() {
-        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         when(personRepository.existsById(person.getId())).thenReturn(true);
         personService.deletePerson(person.getId());
         verify(personRepository, times(1)).deleteById(person.getId());
@@ -92,7 +92,7 @@ class PersonServiceTest {
 
     @Test
     void deletePersonNotExists() {
-        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8));
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         var id = person.getId();
         when(personRepository.existsById(person.getId())).thenReturn(false);
         Exception ex2 = assertThrows(IllegalStateException.class, () -> {
