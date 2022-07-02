@@ -130,4 +130,14 @@ class PersonTest {
         Assertions.assertEquals(expectedAge, actualAge);
         Assertions.assertEquals(expectedAge2, actualAge2);
     }
+
+    @Test
+    void personToString() {
+        var date = LocalDate.now().minusYears(20).minusDays(1);
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", date, 7.8, 8.9);
+        person.setId(1L);
+        var expectedAge = Period.between(date, LocalDate.now()).getYears();
+        String personString = person.toString();
+        Assertions.assertEquals("Person(id=1, firstName=Max, lastName=Mustermann, email=max.mustermann@test.com, dob=" + date + ", homeLatitude=7.8, homeLongitude=8.9, score=null, age=" + expectedAge + ")", personString);
+    }
 }

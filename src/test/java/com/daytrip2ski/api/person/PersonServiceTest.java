@@ -42,6 +42,42 @@ class PersonServiceTest {
     }
 
     @Test
+    void getPersonById() {
+        Optional<Person> person = Optional.of(new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9));
+        when(personRepository.findById(1L)).thenReturn(person);
+        Optional<Person> person1 = personService.findPersonById(1L);
+
+        assertEquals(person, person1);
+    }
+
+    @Test
+    void getPersonByIdNotFound() {
+        Optional<Person> person = Optional.of(new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9));
+        when(personRepository.findById(1L)).thenReturn(person);
+        Exception ex = assertThrows(IllegalStateException.class, () -> personService.findPersonById(2L));
+
+        assertEquals("Person not found", ex.getMessage());
+    }
+
+    @Test
+    void getPersonScoreById() {
+        Optional<Score> score = Optional.of(new Score(1L, 2d, 3d, 4d,5d,true,true,6d,7d, 8d));
+        when(personRepository.findPersonScoreById(1L)).thenReturn(score);
+        Optional<Score> score1 = personService.findPersonScoreById(1L);
+
+        assertEquals(score, score1);
+    }
+
+    @Test
+    void getPersonScoreByIdNoScore() {
+        Optional<Score> score = Optional.of(new Score(1L, 2d, 3d, 4d,5d,true,true,6d,7d, 8d));
+        when(personRepository.findPersonScoreById(1L)).thenReturn(score);
+        Exception ex = assertThrows(IllegalStateException.class, () -> personService.findPersonScoreById(2L));
+
+        assertEquals("Person has no scoring", ex.getMessage());
+    }
+
+    @Test
     void addNewPersonSuccessful() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         personService.addNewPerson(person);
@@ -73,6 +109,24 @@ class PersonServiceTest {
         verify(personRepository, times(1)).save(personSuccess2);
         assertEquals("Date of Birth not in range", ex.getMessage());
         assertEquals("Date of Birth not in range", ex2.getMessage());
+    }
+
+    @Test
+    void savePerson() {
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
+        person.setId(1L);
+        when(personRepository.findById(1L)).thenReturn(Optional.of(person));
+        personService.savePerson(person);
+        verify(personRepository, times(1)).save(person);
+    }
+
+    @Test
+    void savePersonNotFound() {
+        Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
+        person.setId(2L);
+        when(personRepository.findById(1L)).thenReturn(Optional.of(person));
+        Exception ex = assertThrows(IllegalStateException.class, () -> personService.savePerson(person));
+        assertEquals("Person not found", ex.getMessage());
     }
 
     @Test

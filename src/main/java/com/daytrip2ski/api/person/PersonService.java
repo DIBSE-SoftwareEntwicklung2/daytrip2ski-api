@@ -25,7 +25,7 @@ public class PersonService {
     public Optional<Person> findPersonById(Long id) {
         Optional<Person> personOptional = personRepository.findById(id);
         if (personOptional.isEmpty()) {
-            throw new IllegalStateException("Person has no scoring");
+            throw new IllegalStateException("Person not found");
         }
         return personOptional;
     }
@@ -33,11 +33,11 @@ public class PersonService {
     public Optional<Person> findPersonByEmail(String email) {return personRepository.findPersonByEmail(email);}
 
     public Optional<Score> findPersonScoreById(Long id) {
-        Optional<Score> personOptional = personRepository.findPersonScoreById(id);
-        if (personOptional.isEmpty()) {
+        Optional<Score> scoreOptional = personRepository.findPersonScoreById(id);
+        if (scoreOptional.isEmpty()) {
             throw new IllegalStateException("Person has no scoring");
         }
-        return personOptional;
+        return scoreOptional;
     }
 
     public void addNewPerson(Person person) {
@@ -53,11 +53,8 @@ public class PersonService {
     }
 
     public void savePerson(Person person) {
-        Optional<Person> personOptional = this.findPersonById(person.getId());
-        if (personOptional.isEmpty()) {
-            throw new IllegalStateException("Person not exists!");
-        }
-
+        // Throws exception when person does not exist.
+        this.findPersonById(person.getId());
         personRepository.save(person);
     }
 
