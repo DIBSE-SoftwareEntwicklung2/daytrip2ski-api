@@ -7,8 +7,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 class SkiresortTest {
     @Test
     void createSkiresortSuccessful() {
@@ -63,24 +61,14 @@ class SkiresortTest {
     @Test
     void createSkiresortConstraints() {
         var skiresort = new Skiresort();
-        StringBuffer stringBufferSuccess = new StringBuffer(1025);
-        for (int i = 0; i < 1024; i++) {
-            stringBufferSuccess.append("A");
-        }
+        String stringBufferSuccess = "A".repeat(1024);
+        String stringFail = "A".repeat(1026);
 
-        StringBuffer stringBufferFail = new StringBuffer(1025);
-        for (int i = 0; i < 2026; i++) {
-            stringBufferFail.append("A");
-        }
+        skiresort.setWebcamUrl(stringBufferSuccess);
+        skiresort.setWebsiteUrl(stringBufferSuccess);
 
-        String stringSuccess = stringBufferSuccess.toString();
-        String stringFail = stringBufferFail.toString();
-
-        skiresort.setWebcamUrl(stringSuccess);
-        skiresort.setWebsiteUrl(stringSuccess);
-
-        Assertions.assertEquals(stringSuccess, skiresort.getWebcamUrl());
-        Assertions.assertEquals(stringSuccess, skiresort.getWebsiteUrl());
+        Assertions.assertEquals(stringBufferSuccess, skiresort.getWebcamUrl());
+        Assertions.assertEquals(stringBufferSuccess, skiresort.getWebsiteUrl());
 
         // ToDo
 

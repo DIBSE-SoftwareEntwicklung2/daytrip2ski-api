@@ -21,7 +21,7 @@ public class SkiresortService {
 
     public Optional<Skiresort> findSkiresortById(Long id) {
         Optional<Skiresort> skiresortOptional = skiresortRepository.findById(id);
-        if (!skiresortOptional.isPresent()) {
+        if (skiresortOptional.isEmpty()) {
             throw new IllegalStateException("Skiresort not there");
         }
         return skiresortOptional;

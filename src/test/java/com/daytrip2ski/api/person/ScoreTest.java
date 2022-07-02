@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 class ScoreTest {
     @Test
     void createScoreSuccessful() {
-        var score = new Score(1l, 2d, 3d, 4d,5d,true,true,6d,7d, 8d);
-        Assertions.assertEquals(1l, score.getId());
+        var score = new Score(1L, 2d, 3d, 4d,5d,true,true,6d,7d, 8d);
+        Assertions.assertEquals(1L, score.getId());
         Assertions.assertEquals(2d, score.getVariety());
         Assertions.assertEquals(3d, score.getAffinityToEasyTracks());
         Assertions.assertEquals(4d, score.getAffinityToIntermediateTracks());

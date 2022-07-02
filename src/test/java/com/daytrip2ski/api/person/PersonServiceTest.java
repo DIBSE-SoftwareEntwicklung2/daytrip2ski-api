@@ -1,6 +1,5 @@
 package com.daytrip2ski.api.person;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -53,9 +52,7 @@ class PersonServiceTest {
     void addNewPersonEmailExists() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         when(personRepository.findPersonByEmail(person.getEmail())).thenReturn(Optional.of(person));
-        Exception ex = assertThrows(IllegalStateException.class, () -> {
-            personService.addNewPerson(person);
-        });
+        Exception ex = assertThrows(IllegalStateException.class, () -> personService.addNewPerson(person));
 
         assertEquals("Email already exists", ex.getMessage());
     }
@@ -69,12 +66,8 @@ class PersonServiceTest {
 
         personService.addNewPerson(personSuccess1);
         personService.addNewPerson(personSuccess2);
-        Exception ex = assertThrows(IllegalStateException.class, () -> {
-            personService.addNewPerson(personFail1);
-        });
-        Exception ex2 = assertThrows(IllegalStateException.class, () -> {
-            personService.addNewPerson(personFail2);
-        });
+        Exception ex = assertThrows(IllegalStateException.class, () -> personService.addNewPerson(personFail1));
+        Exception ex2 = assertThrows(IllegalStateException.class, () -> personService.addNewPerson(personFail2));
 
         verify(personRepository, times(1)).save(personSuccess1);
         verify(personRepository, times(1)).save(personSuccess2);
@@ -95,8 +88,6 @@ class PersonServiceTest {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
         var id = person.getId();
         when(personRepository.existsById(person.getId())).thenReturn(false);
-        Exception ex2 = assertThrows(IllegalStateException.class, () -> {
-            personService.deletePerson(id);
-        });
+        assertThrows(IllegalStateException.class, () -> personService.deletePerson(id));
     }
 }

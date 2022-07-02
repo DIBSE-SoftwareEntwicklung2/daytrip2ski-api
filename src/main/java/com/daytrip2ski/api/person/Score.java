@@ -23,7 +23,6 @@ public class Score {
             generator = "score_seq"
     )
     private Long id;
-
     private Double variety;
     private Double affinityToEasyTracks;
     private Double affinityToIntermediateTracks;

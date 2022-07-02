@@ -1,8 +1,5 @@
 package com.daytrip2ski.api.skiresort;
 
-import com.daytrip2ski.api.person.Person;
-import com.daytrip2ski.api.person.PersonController;
-import com.daytrip2ski.api.person.PersonService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

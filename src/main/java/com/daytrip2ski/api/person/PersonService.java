@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +24,7 @@ public class PersonService {
 
     public Optional<Person> findPersonById(Long id) {
         Optional<Person> personOptional = personRepository.findById(id);
-        if (!personOptional.isPresent()) {
+        if (personOptional.isEmpty()) {
             throw new IllegalStateException("Person has no scoring");
         }
         return personOptional;
@@ -36,7 +34,7 @@ public class PersonService {
 
     public Optional<Score> findPersonScoreById(Long id) {
         Optional<Score> personOptional = personRepository.findPersonScoreById(id);
-        if (!personOptional.isPresent()) {
+        if (personOptional.isEmpty()) {
             throw new IllegalStateException("Person has no scoring");
         }
         return personOptional;
@@ -56,7 +54,7 @@ public class PersonService {
 
     public void savePerson(Person person) {
         Optional<Person> personOptional = this.findPersonById(person.getId());
-        if (!personOptional.isPresent()) {
+        if (personOptional.isEmpty()) {
             throw new IllegalStateException("Person not exists!");
         }
 

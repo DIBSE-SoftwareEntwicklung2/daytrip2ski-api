@@ -3,15 +3,12 @@ package com.daytrip2ski.api;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import springfox.documentation.RequestHandler;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.Collection;
 import java.util.Collections;
 
 @SpringBootApplication
@@ -37,9 +34,9 @@ public class ApiApplication {
 				"Daytrip2ski API for Planning your Skitrip",
 				"1.0",
 				"For use ask daytrip2ski development team",
-				new springfox.documentation.service.Contact("A-Team", "http://mci.edu", "sm1678@mci4me.at"),
+				new springfox.documentation.service.Contact("A-Team", "https://mci.edu", "sm1678@mci4me.at"),
 				"API License",
-				"http://mci.edu",
+				"https://mci.edu",
 				Collections.emptyList()
 		);
 	}

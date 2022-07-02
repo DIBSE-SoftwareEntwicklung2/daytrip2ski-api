@@ -35,11 +35,13 @@ public class PersonController {
     }
 
     @PostMapping(path = "register")
+    @SuppressWarnings("squid:S4684") // @Valid will validate the person.
     public void registerNewPerson(@Valid @RequestBody Person person) {
         personService.addNewPerson(person);
     }
 
     @PostMapping(path = "save")
+    @SuppressWarnings("squid:S4684") // @Valid will validate the person.
     public void savePerson(@Valid @RequestBody Person person) { personService.savePerson(person);}
 
     @DeleteMapping(path ="{personId}")

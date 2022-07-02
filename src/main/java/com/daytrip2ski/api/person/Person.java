@@ -49,11 +49,11 @@ public class Person {
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dob;
 
-    @NotNull(message="Homepositon required")
+    @NotNull(message="Home position required")
     @Column(name = "home_latitude", nullable = false)
     private Double homeLatitude;
 
-    @NotNull(message="Homepositon required")
+    @NotNull(message="Home position required")
     @Column(name = "home_longitude", nullable = false)
     private Double homeLongitude;
 
