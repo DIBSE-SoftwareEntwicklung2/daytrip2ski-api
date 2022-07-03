@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +41,7 @@ public class PersonService {
         return scoreOptional;
     }
 
+    @Transactional
     public void addNewPerson(Person person) {
         Optional<Person> personOptional = personRepository.findPersonByEmail(person.getEmail());
         if (personOptional.isPresent()) {
@@ -52,12 +54,14 @@ public class PersonService {
         personRepository.save(person);
     }
 
+    @Transactional
     public void savePerson(Person person) {
         // Throws exception when person does not exist.
         this.findPersonById(person.getId());
         personRepository.save(person);
     }
 
+    @Transactional
     public void deletePerson(Long personId) {
         if (!personRepository.existsById(personId)) {
             throw new IllegalStateException(
