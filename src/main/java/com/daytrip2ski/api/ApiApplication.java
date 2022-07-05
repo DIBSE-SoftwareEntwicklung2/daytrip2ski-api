@@ -19,6 +19,11 @@ public class ApiApplication {
 		SpringApplication.run(ApiApplication.class, args);
 	}
 
+	/**
+	 * Configure Swagger for this project
+	 *
+	 * @return Docket
+	 */
 	@Bean
 	public Docket swaggerConfiguration() {
 		return new Docket(DocumentationType.SWAGGER_2)
@@ -28,6 +33,11 @@ public class ApiApplication {
 				.apiInfo(apiDetails());
 	}
 
+	/**
+	 * Define Header for Swagger documentation
+	 *
+	 * @return ApiInfo
+	 */
 	private ApiInfo apiDetails() {
 		return new ApiInfo(
 				"daytrip2Ski API",

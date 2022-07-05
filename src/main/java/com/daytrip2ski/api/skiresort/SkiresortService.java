@@ -15,10 +15,22 @@ public class SkiresortService {
         this.skiresortRepository = skiresortRepository;
     }
 
+    /**
+     * Getting all Skiresorts
+     *
+     * @return List<Skiresort>
+     */
     public List<Skiresort> getSkiresorts() {
         return skiresortRepository.findAll();
     }
 
+    /**
+     * Search a skiresort with that id
+     *
+     * @param id
+     * @throws IllegalStateException
+     * @return Skiresort
+     */
     public Optional<Skiresort> findSkiresortById(Long id) {
         Optional<Skiresort> skiresortOptional = skiresortRepository.findById(id);
         if (skiresortOptional.isEmpty()) {
@@ -27,34 +39,82 @@ public class SkiresortService {
         return skiresortOptional;
     }
 
+    /**
+     * Find skiresorts with maximum distance for
+     * category easy
+     *
+     * @return List<Skiresort>
+     */
     public List<Skiresort> findSkiresortsByMaxDistanceEasy() {
         return skiresortRepository.findSkiresortByMaxDistanceEasy();
     }
 
+    /**
+     * Find skiresorts with minimum distance for
+     * category easy
+     *
+     * @return List<Skiresort>
+     */
     public List<Skiresort> findSkiresortsByMinDistanceEasy() {
         return skiresortRepository.findSkiresortByMinDistanceEasy();
     }
 
+    /**
+     * Find skiresorts with maximum distance for
+     * category intermediate
+     *
+     * @return List<Skiresort>
+     */
     public List<Skiresort> findSkiresortsByMaxDistanceIntermediate() {
         return skiresortRepository.findSkiresortByMaxDistanceIntermediate();
     }
 
+    /**
+     * Find skiresorts with minimum distance for
+     * category intermediate
+     *
+     * @return List<Skiresort>
+     */
     public List<Skiresort> findSkiresortsByMinDistanceIntermediate() {
         return skiresortRepository.findSkiresortByMinDistanceIntermediate();
     }
 
+    /**
+     * Find skiresorts with maximum distance for
+     * category difficult
+     *
+     * @return List<Skiresort>
+     */
     public List<Skiresort> findSkiresortsByMaxDistanceDifficult() {
         return skiresortRepository.findSkiresortByMaxDistanceDifficult();
     }
 
+    /**
+     * Find skiresorts with minimum distance for
+     * category difficult
+     *
+     * @return List<Skiresort>
+     */
     public List<Skiresort> findSkiresortsByMinDistanceDifficult() {
         return skiresortRepository.findSkiresortByMinDistanceDifficult();
     }
 
+    /**
+     * The maximum numbers of climbing aids
+     * of all skiresorts
+     *
+     * @return Long
+     */
     public Long findMaxNumbersOfClimbingAids() {
         return skiresortRepository.findMaxNumbersOfClimbingAids();
     }
 
+    /**
+     * The minimum numbers of climbing aids
+     * of all skiresorts
+     *
+     * @return Long
+     */
     public Long findMinNumbersOfClimbingAids() {
         return skiresortRepository.findMinNumbersOfClimbingAids();
     }

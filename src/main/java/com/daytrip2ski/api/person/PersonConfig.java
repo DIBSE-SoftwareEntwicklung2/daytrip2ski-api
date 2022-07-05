@@ -10,6 +10,12 @@ import java.util.List;
 
 @Configuration
 public class PersonConfig {
+
+    /**
+     * Inserts demo data for development
+     * @param repository
+     * @return
+     */
     @Bean
     CommandLineRunner insertPersons(PersonRepository repository) {
         return args -> {
@@ -25,9 +31,9 @@ public class PersonConfig {
                     3D
             );
 
-            Person martin = new Person("Martin",
-                                "Angermair",
-                                "martin.angermair@daytrip2ski.com",
+            Person martin = new Person("Otto",
+                                "Neumann",
+                                "otto.neumann@daytrip2ski.com",
                                 LocalDate.of(1965, Month.SEPTEMBER, 6),
                     48.13743, 11.57549,
                                 score);

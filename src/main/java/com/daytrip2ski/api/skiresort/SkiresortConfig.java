@@ -12,6 +12,11 @@ import java.util.List;
 @Configuration
 public class SkiresortConfig {
 
+    /**
+     * Inserts demo data for development
+     * @param repository
+     * @return
+     */
     @Bean
     CommandLineRunner insertSkiresorts(SkiresortRepository repository) {
         return args -> {
