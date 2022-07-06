@@ -101,11 +101,11 @@ jobs:
         executor: machine-executor 
         steps: 
             - cloudrun/init 
-            - run:
+            - run: web java -Dserver.port=$PORT -jar target/api-0.0.1-SNAPSHOT.jar
                 name: deploy to Google App Engine
                 command: |
                     ls
-                    gcloud app deploy app.yaml
+                    gcloud app deploy ./src/main/appengineapp.yaml
 workflows: 
     version: 2
     workflow: 
