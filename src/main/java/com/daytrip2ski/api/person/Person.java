@@ -11,6 +11,12 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * This Class is the Model of a Person and define the columns for the
+ * Database
+ * Lombok is used for automatic generating Getter and Setter and other
+ * class stuff
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -102,6 +108,10 @@ public class Person {
         this.score = score;
     }
 
+    /**
+     * Calculate the actual age
+     * @return actual age
+     */
     public Integer getAge() {
         return Period.between(this.dob, LocalDate.now()).getYears();
     }

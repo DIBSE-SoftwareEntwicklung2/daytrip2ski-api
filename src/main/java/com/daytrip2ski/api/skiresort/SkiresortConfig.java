@@ -14,7 +14,7 @@ public class SkiresortConfig {
 
     /**
      * Inserts demo data for development
-     * @param repository
+     * @param repository of Skiresorts
      * @return
      */
     @Bean

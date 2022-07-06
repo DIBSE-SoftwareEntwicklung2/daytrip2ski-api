@@ -8,6 +8,10 @@ import javax.validation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller layer of person
+ * <a href="http://daytrip2ski-api.herokuapp.com/swagger-ui.html#/person-controller">API docukentation</a>
+ */
 @RestController
 @RequestMapping(path = "api/v1/person")
 @Validated
