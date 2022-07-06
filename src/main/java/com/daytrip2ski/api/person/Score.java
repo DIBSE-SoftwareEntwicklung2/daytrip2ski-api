@@ -3,6 +3,8 @@ package com.daytrip2ski.api.person;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Getter
 @Setter
@@ -23,14 +25,25 @@ public class Score {
             generator = "score_seq"
     )
     private Long id;
+    @Min(0)
+    @Max(1)
     private Double variety;
+    @Min(0)
+    @Max(1)
     private Double affinityToEasyTracks;
+    @Min(0)
+    @Max(1)
     private Double affinityToIntermediateTracks;
+    @Min(0)
+    @Max(1)
     private Double affinityToDifficultTracks;
     private Boolean requiresRental;
     private Boolean requiresFamilyFriendly;
+    @Min(0)
     private Double budged;
+    @Min(0)
     private Double maxDistance;
+    @Min(0)
     private Double maxDrivingTime;
 
     public Score(Double variety,
