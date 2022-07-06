@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * SQL repository for person
+ */
 @Repository
 public interface PersonRepository
         extends JpaRepository<Person,Long> {

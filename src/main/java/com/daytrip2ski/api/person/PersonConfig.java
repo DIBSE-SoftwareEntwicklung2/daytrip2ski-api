@@ -13,7 +13,7 @@ public class PersonConfig {
 
     /**
      * Inserts demo data for development
-     * @param repository
+     * @param repository of Skiresorts
      * @return
      */
     @Bean

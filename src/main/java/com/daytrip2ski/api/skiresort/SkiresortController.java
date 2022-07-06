@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller layer of skiresort
+ * <a href="http://daytrip2ski-api.herokuapp.com/swagger-ui.html#/skiresort-controller">API docukentation</a>
+ */
 @RestController
 @RequestMapping(path = "api/v1/skiresort")
 public class SkiresortController {

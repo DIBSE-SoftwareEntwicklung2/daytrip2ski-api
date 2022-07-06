@@ -9,6 +9,12 @@ import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * This Class is the Model of a Skiresort and define the columns for the
+ * Database
+ * Lombok is used for automatic generating Getter and Setter and other
+ * class stuff
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,6 +22,9 @@ import java.time.LocalTime;
 @Entity
 @Table
 public class Skiresort {
+    /**
+     * Base URL for generating API URLs for openweather API
+     */
     private static String actualWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=#latitude#&lon=#longitude#&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d";
     private static String forecastWeatherUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?lat=#latitude#&lon=#longitude#&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d";
     @Id
@@ -190,6 +199,10 @@ public class Skiresort {
         this.isActive = isActive;
     }
 
+    /**
+     * Generate API URL for actual openweather API
+     * @return Openweather URL
+     */
     public String getWeatherActualUrl() {
         String returnUrl = actualWeatherUrl;
         returnUrl = returnUrl.replace("#longitude#", this.longitude.toString());
@@ -198,6 +211,10 @@ public class Skiresort {
         return returnUrl;
     }
 
+    /**
+     * Generate API URL for forecase openweather API
+     * @return Openweather URL
+     */
     public String getWeatherForecastUrl() {
         String returnUrl = forecastWeatherUrl;
         returnUrl = returnUrl.replace("#longitude#", this.longitude.toString());
@@ -206,16 +223,26 @@ public class Skiresort {
         return returnUrl;
     }
 
+    /**
+     * Calculate the total slope distance in km of all categories
+     * @return distance in km
+     */
     public Long getTotalSlopeDistance() {
         return this.distanceEasy + this.distanceIntermediate + this.distanceDifficult;
     }
 
+    /**
+     * Set the total number of climbing aids
+     */
     public void setTotalNumbersOfClimbingAids() {
         this.totalNumbersOfClimbingAids = this.numberOfBabyLift + this.numberOfChairLift + this.numberOfGondolaLift
                 + this.numberOfCableCar + this.numberOfFunicular + this.numberOfCogRailway
                 + this.numberOfMovingCarpet + this.numberOfTBarLift;
     }
 
+    /**
+     * Calculate total number of climbing aids before persisting
+     */
     @PrePersist
     @PreUpdate
     public void calculateTotalNumbersOfClimbingAids() {
