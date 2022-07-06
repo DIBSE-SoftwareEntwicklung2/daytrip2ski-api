@@ -104,6 +104,7 @@ jobs:
             - run:
                 name: deploy to Google App Engine
                 command: |
+                    ls
                     gcloud app deploy app.yaml
 workflows: 
     version: 2
