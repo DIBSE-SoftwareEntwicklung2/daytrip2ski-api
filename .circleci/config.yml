@@ -101,7 +101,7 @@ jobs:
         executor: machine-executor 
         steps: 
             - cloudrun/init 
-            - run: web java -Dserver.port=$PORT -jar target/api-0.0.1-SNAPSHOT.jar
+            - run:
                 name: deploy to Google App Engine
                 command: |
                     ls
