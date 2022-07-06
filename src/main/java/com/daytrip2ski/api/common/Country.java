@@ -13,15 +13,8 @@ import javax.persistence.*;
 @Table
 public class Country {
     @Id
-    @SequenceGenerator(
-            name = "country_seq",
-            sequenceName = "country_seq",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "country_seq"
-    )
+    @SequenceGenerator(name = "country_seq", sequenceName = "country_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "country_seq")
     private Long id;
     private String code3;
     private String code2;

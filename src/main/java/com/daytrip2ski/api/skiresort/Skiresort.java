@@ -1,6 +1,9 @@
 package com.daytrip2ski.api.skiresort;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,15 +31,8 @@ public class Skiresort {
     private static String actualWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=#latitude#&lon=#longitude#&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d";
     private static String forecastWeatherUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?lat=#latitude#&lon=#longitude#&cnt=10&units=metric&appid=27c73d44b5a87c8738cbe79bc5eca26d";
     @Id
-    @SequenceGenerator(
-            name = "skiresort_seq",
-            sequenceName = "skiresort_seq",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "skiresort_seq"
-    )
+    @SequenceGenerator(name = "skiresort_seq", sequenceName = "skiresort_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skiresort_seq")
     @Column(updatable = false)
     private Long id;
 
@@ -145,24 +141,7 @@ public class Skiresort {
 
     private Boolean isActive;
 
-    public Skiresort(String name,
-                     Double latitude, Double longitude,
-                     Long altitudeValley, Long altitudeMountain,
-                     Long numberOfCogRailway, Long numberOfFunicular,
-                     Long numberOfCableCar, Long numberOfGondolaLift,
-                     Long numberOfChairLift, Long numberOfTBarLift,
-                     Long numberOfBabyLift, Long numberOfMovingCarpet,
-                     Long distanceEasy, Long distanceIntermediate,
-                     Long distanceDifficult,
-                     String generalSnowCondition, Long numberOfRestaurants,
-                     String webcamUrl, String websiteUrl,
-                     Boolean skiRental, Boolean skiCourse,
-                     Boolean familyFriendly, Double priceDayTicketAdults,
-                     Double priceDayTicketYouth, Double priceDayTicketChildren,
-                     LocalDate seasonFrom, LocalDate seasonTo,
-                     LocalTime openingHoursFrom, LocalTime openingHoursTo,
-                     String openingHoursNote, String remark,
-                     String description, Boolean isActive) {
+    public Skiresort(String name, Double latitude, Double longitude, Long altitudeValley, Long altitudeMountain, Long numberOfCogRailway, Long numberOfFunicular, Long numberOfCableCar, Long numberOfGondolaLift, Long numberOfChairLift, Long numberOfTBarLift, Long numberOfBabyLift, Long numberOfMovingCarpet, Long distanceEasy, Long distanceIntermediate, Long distanceDifficult, String generalSnowCondition, Long numberOfRestaurants, String webcamUrl, String websiteUrl, Boolean skiRental, Boolean skiCourse, Boolean familyFriendly, Double priceDayTicketAdults, Double priceDayTicketYouth, Double priceDayTicketChildren, LocalDate seasonFrom, LocalDate seasonTo, LocalTime openingHoursFrom, LocalTime openingHoursTo, String openingHoursNote, String remark, String description, Boolean isActive) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -201,6 +180,7 @@ public class Skiresort {
 
     /**
      * Generate API URL for actual openweather API
+     *
      * @return Openweather URL
      */
     public String getWeatherActualUrl() {
@@ -213,6 +193,7 @@ public class Skiresort {
 
     /**
      * Generate API URL for forecase openweather API
+     *
      * @return Openweather URL
      */
     public String getWeatherForecastUrl() {
@@ -225,6 +206,7 @@ public class Skiresort {
 
     /**
      * Calculate the total slope distance in km of all categories
+     *
      * @return distance in km
      */
     public Long getTotalSlopeDistance() {
@@ -235,9 +217,7 @@ public class Skiresort {
      * Set the total number of climbing aids
      */
     public void setTotalNumbersOfClimbingAids() {
-        this.totalNumbersOfClimbingAids = this.numberOfBabyLift + this.numberOfChairLift + this.numberOfGondolaLift
-                + this.numberOfCableCar + this.numberOfFunicular + this.numberOfCogRailway
-                + this.numberOfMovingCarpet + this.numberOfTBarLift;
+        this.totalNumbersOfClimbingAids = this.numberOfBabyLift + this.numberOfChairLift + this.numberOfGondolaLift + this.numberOfCableCar + this.numberOfFunicular + this.numberOfCogRailway + this.numberOfMovingCarpet + this.numberOfTBarLift;
     }
 
     /**

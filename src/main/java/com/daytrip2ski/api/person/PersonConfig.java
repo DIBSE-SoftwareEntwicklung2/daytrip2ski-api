@@ -13,41 +13,20 @@ public class PersonConfig {
 
     /**
      * Inserts demo data for development
+     *
      * @param repository of Skiresorts
      * @return
      */
     @Bean
     CommandLineRunner insertPersons(PersonRepository repository) {
         return args -> {
-            Score score = new Score(
-                    0.5D,
-                    0.5D,
-                    0.5D,
-                    0.5,
-                    Boolean.TRUE,
-                    Boolean.FALSE,
-                    1000D,
-                    200D,
-                    3D
-            );
+            Score score = new Score(0.5D, 0.5D, 0.5D, 0.5, Boolean.TRUE, Boolean.FALSE, 1000D, 200D, 3D);
 
-            Person martin = new Person("Otto",
-                                "Neumann",
-                                "otto.neumann@daytrip2ski.com",
-                                LocalDate.of(1965, Month.SEPTEMBER, 6),
-                    48.13743, 11.57549,
-                                score);
+            Person martin = new Person("Otto", "Neumann", "otto.neumann@daytrip2ski.com", LocalDate.of(1965, Month.SEPTEMBER, 6), 48.13743, 11.57549, score);
 
-            Person max = new Person("Max",
-                            "Mustermann",
-                            "max.mustermann@daytrip2ski.com",
-                            LocalDate.of(2000, Month.APRIL, 1),
-                    45.4654219, 9.1859243
-            );
+            Person max = new Person("Max", "Mustermann", "max.mustermann@daytrip2ski.com", LocalDate.of(2000, Month.APRIL, 1), 45.4654219, 9.1859243);
 
-            repository.saveAll(
-                    List.of(martin, max)
-            );
+            repository.saveAll(List.of(martin, max));
         };
     }
 }

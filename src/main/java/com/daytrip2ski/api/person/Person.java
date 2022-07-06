@@ -1,6 +1,9 @@
 package com.daytrip2ski.api.person;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -26,28 +29,21 @@ import java.time.Period;
 @Validated
 public class Person {
     @Id
-    @SequenceGenerator(
-            name = "person_seq",
-            sequenceName = "person_seq",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "person_seq"
-    )
+    @SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @NotBlank(message="First Name is required")
+    @NotBlank(message = "First Name is required")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @NotBlank(message="Last Name is required")
+    @NotBlank(message = "Last Name is required")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Email(message="Not a valid E-Mail address")
-    @NotBlank(message="E-Mail is required")
+    @Email(message = "Not a valid E-Mail address")
+    @NotBlank(message = "E-Mail is required")
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -55,22 +51,16 @@ public class Person {
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dob;
 
-    @NotNull(message="Home position required")
+    @NotNull(message = "Home position required")
     @Column(name = "home_latitude", nullable = false)
     private Double homeLatitude;
 
-    @NotNull(message="Home position required")
+    @NotNull(message = "Home position required")
     @Column(name = "home_longitude", nullable = false)
     private Double homeLongitude;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(
-            name = "score_id",
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "person_score_fk"
-            )
-    )
+    @JoinColumn(name = "score_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "person_score_fk"))
 
     @Valid
     private Score score;
@@ -78,12 +68,7 @@ public class Person {
     @Transient
     private Integer age;
 
-    public Person(String firstName,
-                  String lastName,
-                  String email,
-                  LocalDate dob,
-                  Double homeLatitude,
-                  Double homeLongitude) {
+    public Person(String firstName, String lastName, String email, LocalDate dob, Double homeLatitude, Double homeLongitude) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -92,13 +77,7 @@ public class Person {
         this.homeLongitude = homeLongitude;
     }
 
-    public Person(String firstName,
-                  String lastName,
-                  String email,
-                  LocalDate dob,
-                  Double homeLatitude,
-                  Double homeLongitude,
-                  Score score) {
+    public Person(String firstName, String lastName, String email, LocalDate dob, Double homeLatitude, Double homeLongitude, Score score) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -110,6 +89,7 @@ public class Person {
 
     /**
      * Calculate the actual age
+     *
      * @return actual age
      */
     public Integer getAge() {

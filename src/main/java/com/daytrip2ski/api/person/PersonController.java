@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.*;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,9 +46,11 @@ public class PersonController {
 
     @PostMapping(path = "save")
     @SuppressWarnings("squid:S4684") // @Valid will validate the person.
-    public void savePerson(@Valid @RequestBody Person person) { personService.savePerson(person);}
+    public void savePerson(@Valid @RequestBody Person person) {
+        personService.savePerson(person);
+    }
 
-    @DeleteMapping(path ="{personId}")
+    @DeleteMapping(path = "{personId}")
     public void deletePerson(@PathVariable("personId") Long personId) {
         personService.deletePerson(personId);
     }

@@ -13,25 +13,11 @@ import javax.persistence.*;
 @Table
 public class City {
     @Id
-    @SequenceGenerator(
-            name = "city_seq",
-            sequenceName = "city_seq",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "city_seq"
-    )
+    @SequenceGenerator(name = "city_seq", sequenceName = "city_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "city_seq")
     private Long id;
     @ManyToOne
-    @JoinColumn(
-            name = "country_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "country_city_fk"
-            )
-    )
+    @JoinColumn(name = "country_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "country_city_fk"))
     private Country country;
     private String zipCode;
     private String name;

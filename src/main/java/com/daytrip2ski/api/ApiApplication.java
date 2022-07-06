@@ -15,39 +15,26 @@ import java.util.Collections;
 @EnableSwagger2
 public class ApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ApiApplication.class, args);
+    }
 
-	/**
-	 * Configure Swagger for this project
-	 *
-	 * @return Docket
-	 */
-	@Bean
-	public Docket swaggerConfiguration() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.daytrip2ski.api"))
-				.build()
-				.apiInfo(apiDetails());
-	}
+    /**
+     * Configure Swagger for this project
+     *
+     * @return Docket
+     */
+    @Bean
+    public Docket swaggerConfiguration() {
+        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("com.daytrip2ski.api")).build().apiInfo(apiDetails());
+    }
 
-	/**
-	 * Define Header for Swagger documentation
-	 *
-	 * @return ApiInfo
-	 */
-	private ApiInfo apiDetails() {
-		return new ApiInfo(
-				"daytrip2Ski API",
-				"Daytrip2ski API for Planning your Skitrip",
-				"1.0",
-				"For use ask daytrip2ski development team",
-				new springfox.documentation.service.Contact("A-Team", "https://mci.edu", "sm1678@mci4me.at"),
-				"API License",
-				"https://mci.edu",
-				Collections.emptyList()
-		);
-	}
+    /**
+     * Define Header for Swagger documentation
+     *
+     * @return ApiInfo
+     */
+    private ApiInfo apiDetails() {
+        return new ApiInfo("daytrip2Ski API", "Daytrip2ski API for Planning your Skitrip", "1.0", "For use ask daytrip2ski development team", new springfox.documentation.service.Contact("A-Team", "https://mci.edu", "sm1678@mci4me.at"), "API License", "https://mci.edu", Collections.emptyList());
+    }
 }

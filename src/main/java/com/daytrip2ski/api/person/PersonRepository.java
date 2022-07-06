@@ -11,8 +11,7 @@ import java.util.Optional;
  * SQL repository for person
  */
 @Repository
-public interface PersonRepository
-        extends JpaRepository<Person,Long> {
+public interface PersonRepository extends JpaRepository<Person, Long> {
 
     Optional<Person> findPersonByEmail(String email);
 
