@@ -100,12 +100,10 @@ jobs:
         description: Deploy using cloud run 
         executor: machine-executor 
         steps: 
-            - cloudrun/init 
+            - cloudrun/init
             - run:
                 name: deploy to Google App Engine
-                command: |
-                    ls
-                    gcloud app deploy ./src/main/appengine/app.yaml
+                command: gcloud app deploy app.yaml
 
     gcp_cloudrun_deploy_2: 
         description: Deploy using cloud run 
@@ -117,7 +115,7 @@ jobs:
                 image: 'gcr.io/$GOOGLE_PROJECT_ID/$CIRCLE_WORKFLOW_ID' 
                 service-name: 'daytrip2ski-api' 
                 region: 'europe-west1' 
-                unauthenticated: true                
+                unauthenticated: true            
 workflows: 
     version: 2
     workflow: 
@@ -134,6 +132,9 @@ workflows:
             requires: 
                 - test 
         - gcp_cloudrun_deploy: 
+            requires: 
+                - build_push_image_gcr
+        - gcp_cloudrun_deploy_2: 
             requires: 
                 - build_push_image_gcr
         - heroku/deploy-via-git:
