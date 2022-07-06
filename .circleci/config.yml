@@ -100,6 +100,7 @@ jobs:
         description: Deploy using cloud run 
         executor: machine-executor 
         steps: 
+            - checkout
             - cloudrun/init
             - run:
                 name: deploy to Google App Engine
@@ -108,7 +109,8 @@ jobs:
     gcp_cloudrun_deploy_2: 
         description: Deploy using cloud run 
         executor: machine-executor 
-        steps: 
+        steps:
+            - checkout
             - cloudrun/init 
             - cloudrun/deploy:
                 image: 'gcr.io/$GOOGLE_PROJECT_ID/$CIRCLE_WORKFLOW_ID' 
