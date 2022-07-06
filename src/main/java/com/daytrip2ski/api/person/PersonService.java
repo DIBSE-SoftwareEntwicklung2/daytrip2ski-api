@@ -25,11 +25,11 @@ public class PersonService {
 
     /**
      * Search a people with that id
-     * and throws an exeption if it not found
+     * and throws an exception if it not found
      *
-     * @param id
+     * @param id id
      * @return Person
-     * @throws IllegalStateException
+     * @throws IllegalStateException Person not found
      */
     public Optional<Person> findPersonById(Long id) {
         Optional<Person> personOptional = personRepository.findById(id);
@@ -41,11 +41,11 @@ public class PersonService {
 
     /**
      * Search for a people with that email
-     * and throws an exeption if it not found
+     * and throws an exception if it not found
      *
-     * @param email
+     * @param email email
      * @return Person
-     * @throws IllegalStateException
+     * @throws IllegalStateException Person with email not found
      */
     public Optional<Person> findPersonByEmail(String email) {
         return personRepository.findPersonByEmail(email);
@@ -53,11 +53,11 @@ public class PersonService {
 
     /**
      * Gives the score of a person with that id
-     * and throws an exeption if it not found
+     * and throws an exception if it not found
      *
-     * @param id
+     * @param id id
      * @return Score
-     * @throws IllegalStateException
+     * @throws IllegalStateException Person has no scoring
      */
     public Optional<Score> findPersonScoreById(Long id) {
         Optional<Score> scoreOptional = personRepository.findPersonScoreById(id);
@@ -71,8 +71,8 @@ public class PersonService {
      * Add a new person to the database and
      * checks if a person already exists
      *
-     * @param person
-     * @throws IllegalStateException
+     * @param person person
+     * @throws IllegalStateException Person already exists or Person has birthday in the future
      */
     @Transactional
     public void addNewPerson(Person person) {
@@ -89,7 +89,7 @@ public class PersonService {
     /**
      * Saved an existing person
      *
-     * @param person
+     * @param person person
      */
     @Transactional
     public void savePerson(Person person) {
@@ -101,14 +101,14 @@ public class PersonService {
      * Delete a person with that id and check if
      * that person exists
      *
-     * @param personId
-     * @throws IllegalStateException
+     * @param id id
+     * @throws IllegalStateException Person does not exist
      */
     @Transactional
-    public void deletePerson(Long personId) {
-        if (!personRepository.existsById(personId)) {
-            throw new IllegalStateException("Person with id " + personId + " does not exists");
+    public void deletePerson(Long id) {
+        if (!personRepository.existsById(id)) {
+            throw new IllegalStateException("Person with id " + id + " does not exists");
         }
-        personRepository.deleteById(personId);
+        personRepository.deleteById(id);
     }
 }

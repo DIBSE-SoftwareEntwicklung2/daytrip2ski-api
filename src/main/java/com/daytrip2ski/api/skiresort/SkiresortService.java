@@ -27,9 +27,9 @@ public class SkiresortService {
     /**
      * Search a skiresort with that id
      *
-     * @param id
+     * @param id id
      * @return Skiresort
-     * @throws IllegalStateException
+     * @throws IllegalStateException Skiresort not there
      */
     public Optional<Skiresort> findSkiresortById(Long id) {
         Optional<Skiresort> skiresortOptional = skiresortRepository.findById(id);
