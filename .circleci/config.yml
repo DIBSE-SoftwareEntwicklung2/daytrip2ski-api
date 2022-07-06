@@ -44,7 +44,7 @@ jobs:
                 destination: reports
 
     static_code_analysis:
-        description: Runs a static code analysis
+        description: Runs a static code analysis with Sonarcloud and push the results to sonarcloud 
         executor: vadin-executor
         steps:
             - checkout
@@ -71,7 +71,7 @@ workflows:
         - static_code_analysis:
             context: SonarCloud
             requires: 
-                - build
+                - test
         - heroku/deploy-via-git:
             requires:
                 - test
