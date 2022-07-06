@@ -113,6 +113,7 @@ jobs:
             - checkout
             - cloudrun/init 
             - cloudrun/deploy:
+                platform: 'managed' 
                 image: 'gcr.io/$GOOGLE_PROJECT_ID/$CIRCLE_WORKFLOW_ID' 
                 service-name: 'daytrip2ski-api' 
                 region: 'europe-west1' 
