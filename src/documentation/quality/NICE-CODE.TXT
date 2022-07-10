@@ -16,4 +16,6 @@ Clean code aber ohne Tests:
 src\main\java\com\daytrip2ski\api\person\PersonConfig               2KB
 src\main\java\com\daytrip2ski\api\skiresort\SkiresortConfig         12KB
 
+src\main\java\com\daytrip2ski\api\ - clean code mit tests total     37KB/58KB = 64%
+src\main\java\com\daytrip2ski\api\ - clean code total               51KB/58KB = 88%
 src\main\java\com\daytrip2ski\api\ - test coverage total            68% of lines
