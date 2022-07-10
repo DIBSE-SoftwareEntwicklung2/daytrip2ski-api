@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.times;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -66,6 +65,15 @@ class PersonServiceTest {
         Optional<Score> score1 = personService.findPersonScoreById(1L);
 
         assertEquals(score, score1);
+    }
+
+    @Test
+    void findPersonByEmail() {
+        Optional<Person> person = Optional.of(new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9));
+        when(personRepository.findPersonByEmail("max.mustermann@test.com")).thenReturn(person);
+        Optional<Person> person1 = personService.findPersonByEmail("max.mustermann@test.com");
+
+        assertEquals(person, person1);
     }
 
     @Test

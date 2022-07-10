@@ -216,7 +216,7 @@ public class Skiresort {
     /**
      * Set the total number of climbing aids
      */
-    public void setTotalNumbersOfClimbingAids() {
+    private void setTotalNumbersOfClimbingAids() {
         this.totalNumbersOfClimbingAids = this.numberOfBabyLift + this.numberOfChairLift + this.numberOfGondolaLift + this.numberOfCableCar + this.numberOfFunicular + this.numberOfCogRailway + this.numberOfMovingCarpet + this.numberOfTBarLift;
     }
 
