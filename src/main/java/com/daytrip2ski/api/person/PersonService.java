@@ -9,16 +9,27 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service of class person
+ */
 @Service
 @Validated
 public class PersonService {
     private final PersonRepository personRepository;
 
+    /**
+     * Constructor
+     * @param personRepository repository of persons
+     */
     @Autowired
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
+    /**
+     * Get all persons
+     * @return list of persons
+     */
     public List<Person> getPersons() {
         return personRepository.findAll();
     }

@@ -15,18 +15,27 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+/**
+ * Testing controller of skiresort
+ */
 class SkiresortControllerTest {
     @InjectMocks
     SkiresortController skiresortController;
     @Mock
     SkiresortService skiresortService;
 
+    /**
+     * Set up before each test
+     */
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
         skiresortController = new SkiresortController(skiresortService);
     }
 
+    /**
+     * Get all skiresorts
+     */
     @Test
     void getSkiresorts() {
         var skiresort = new Skiresort("KitzSki", 47.444990D, 12.391430D, 800L, 2000L,

@@ -3,7 +3,13 @@ package com.daytrip2ski.api.person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Testing score class
+ */
 class ScoreTest {
+    /**
+     * Creation of score instance
+     */
     @Test
     void createScoreSuccessful() {
         var score = new Score(1L, 2d, 3d, 4d,5d,true,true,6d,7d, 8d);

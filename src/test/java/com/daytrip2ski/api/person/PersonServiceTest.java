@@ -14,6 +14,9 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Testing service of person
+ */
 class PersonServiceTest {
 
     @InjectMocks
@@ -22,12 +25,18 @@ class PersonServiceTest {
     @Mock
     PersonRepository personRepository;
 
+    /**
+     * Set up before each test
+     */
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
         personService = new PersonService(personRepository);
     }
 
+    /**
+     * Get person
+     */
     @Test
     void getPersons() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -40,6 +49,9 @@ class PersonServiceTest {
         assertEquals(person, allPersons.get(0));
     }
 
+    /**
+     * Get person by id
+     */
     @Test
     void getPersonById() {
         Optional<Person> person = Optional.of(new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9));
@@ -49,6 +61,9 @@ class PersonServiceTest {
         assertEquals(person, person1);
     }
 
+    /**
+     * Get person by id not found
+     */
     @Test
     void getPersonByIdNotFound() {
         Optional<Person> person = Optional.of(new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9));
@@ -58,6 +73,9 @@ class PersonServiceTest {
         assertEquals("Person not found", ex.getMessage());
     }
 
+    /**
+     * Get score of person by id
+     */
     @Test
     void getPersonScoreById() {
         Optional<Score> score = Optional.of(new Score(1L, 2d, 3d, 4d,5d,true,true,6d,7d, 8d));
@@ -67,6 +85,9 @@ class PersonServiceTest {
         assertEquals(score, score1);
     }
 
+    /**
+     * Find person by email
+     */
     @Test
     void findPersonByEmail() {
         Optional<Person> person = Optional.of(new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9));
@@ -76,6 +97,9 @@ class PersonServiceTest {
         assertEquals(person, person1);
     }
 
+    /**
+     * Get person by id no scoring
+     */
     @Test
     void getPersonScoreByIdNoScore() {
         Optional<Score> score = Optional.of(new Score(1L, 2d, 3d, 4d,5d,true,true,6d,7d, 8d));
@@ -85,6 +109,9 @@ class PersonServiceTest {
         assertEquals("Person has no scoring", ex.getMessage());
     }
 
+    /**
+     * Add new person
+     */
     @Test
     void addNewPersonSuccessful() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -92,6 +119,9 @@ class PersonServiceTest {
         verify(personRepository, times(1)).save(person);
     }
 
+    /**
+     * Add new already existing person
+     */
     @Test
     void addNewPersonEmailExists() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -101,6 +131,9 @@ class PersonServiceTest {
         assertEquals("Email already exists", ex.getMessage());
     }
 
+    /**
+     * Add person with valid and invalid birth dates
+     */
     @Test
     void addNewPersonDayOfBirth() {
         Person personFail1 = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().minusYears(101), 7.8, 8.9);
@@ -119,6 +152,9 @@ class PersonServiceTest {
         assertEquals("Date of Birth not in range", ex2.getMessage());
     }
 
+    /**
+     * Save a person
+     */
     @Test
     void savePerson() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -128,6 +164,9 @@ class PersonServiceTest {
         verify(personRepository, times(1)).save(person);
     }
 
+    /**
+     * Save person which cannot be found
+     */
     @Test
     void savePersonNotFound() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -137,6 +176,9 @@ class PersonServiceTest {
         assertEquals("Person not found", ex.getMessage());
     }
 
+    /**
+     * Delete a person
+     */
     @Test
     void deletePersonSuccess() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -145,6 +187,9 @@ class PersonServiceTest {
         verify(personRepository, times(1)).deleteById(person.getId());
     }
 
+    /**
+     * Delete person which does not exist
+     */
     @Test
     void deletePersonNotExists() {
         Person person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service of class skiresort
+ */
 @Service
 public class SkiresortService {
     private final SkiresortRepository skiresortRepository;

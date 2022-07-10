@@ -44,5 +44,4 @@ public class SkiresortConfig {
             repository.saveAll(List.of(kitzski, wengen, ischgl, groeden, schladming, anton, flachau, innsbruck, valdisere, kleinkirchheim));
         };
     }
-
 }

@@ -141,6 +141,9 @@ public class Skiresort {
 
     private Boolean isActive;
 
+    /**
+     * Constructor
+     */
     public Skiresort(String name, Double latitude, Double longitude, Long altitudeValley, Long altitudeMountain, Long numberOfCogRailway, Long numberOfFunicular, Long numberOfCableCar, Long numberOfGondolaLift, Long numberOfChairLift, Long numberOfTBarLift, Long numberOfBabyLift, Long numberOfMovingCarpet, Long distanceEasy, Long distanceIntermediate, Long distanceDifficult, String generalSnowCondition, Long numberOfRestaurants, String webcamUrl, String websiteUrl, Boolean skiRental, Boolean skiCourse, Boolean familyFriendly, Double priceDayTicketAdults, Double priceDayTicketYouth, Double priceDayTicketChildren, LocalDate seasonFrom, LocalDate seasonTo, LocalTime openingHoursFrom, LocalTime openingHoursTo, String openingHoursNote, String remark, String description, Boolean isActive) {
         this.name = name;
         this.latitude = latitude;

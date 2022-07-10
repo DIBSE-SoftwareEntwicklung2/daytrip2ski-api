@@ -1,14 +1,19 @@
-src\main\java\com\daytrip2ski\api\person\Person                     3KB
-src\main\java\com\daytrip2ski\api\person\PersonController           2KB
+Mit allen Tests:
+src\main\java\com\daytrip2ski\api\person\Person                     4KB
+src\main\java\com\daytrip2ski\api\person\PersonController           3KB
 src\main\java\com\daytrip2ski\api\person\PersonRepository           1KB
 src\main\java\com\daytrip2ski\api\person\PersonService              4KB
-src\main\java\com\daytrip2ski\api\skiresort\Skiresort               8KB
-src\main\java\com\daytrip2ski\api\skiresort\SkiresortController     3KB
+src\main\java\com\daytrip2ski\api\person\Score                      3KB
+src\main\java\com\daytrip2ski\api\skiresort\Skiresort               9KB
+src\main\java\com\daytrip2ski\api\skiresort\SkiresortController     4KB
 src\main\java\com\daytrip2ski\api\skiresort\SkiresortRepository     2KB
 src\main\java\com\daytrip2ski\api\skiresort\SkiresortService        4KB
 
-src\main\java\com\daytrip2ski\api\ - total nice code                27KB = 61%
-src\main\java\com\daytrip2ski\api\ - total                          44KB
+Mit wenigen Tests:
+src\main\java\com\daytrip2ski\api\person\Score                      3KB
 
-src\main\java\com\daytrip2ski\api\ - test coverage of nice code     83% of lines
-src\main\java\com\daytrip2ski\api\ - test coverage total            51% of lines
+Clean code aber ohne Tests:
+src\main\java\com\daytrip2ski\api\person\PersonConfig               2KB
+src\main\java\com\daytrip2ski\api\skiresort\SkiresortConfig         12KB
+
+src\main\java\com\daytrip2ski\api\ - test coverage total            68% of lines
