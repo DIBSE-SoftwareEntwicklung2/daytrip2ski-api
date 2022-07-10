@@ -51,40 +51,40 @@ public class Skiresort {
 
     private Long altitudeMountain;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long numberOfCogRailway = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long numberOfFunicular = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long numberOfCableCar = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long numberOfGondolaLift = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long numberOfChairLift = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long numberOfTBarLift = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long numberOfBabyLift = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long numberOfMovingCarpet = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long totalNumbersOfClimbingAids;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long distanceEasy = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long distanceIntermediate = 0L;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long distanceDifficult = 0L;
 
     @Column(updatable = false)
@@ -92,7 +92,7 @@ public class Skiresort {
 
     private String generalSnowCondition;
 
-    @PositiveOrZero(message = "Negativ values not allowed")
+    @PositiveOrZero(message = "Negative values not allowed")
     private Long numberOfRestaurants;
 
     @Column(length = 1024)
@@ -113,13 +113,13 @@ public class Skiresort {
 
     private Boolean familyFriendly;
 
-    @Positive(message = "Negativ or 0 values not allowed")
+    @Positive(message = "Negative or 0 values not allowed")
     private Double priceDayTicketAdults;
 
-    @Positive(message = "Negativ or 0 values not allowed")
+    @Positive(message = "Negative or 0 values not allowed")
     private Double priceDayTicketYouth;
 
-    @Positive(message = "Negativ or 0 values not allowed")
+    @Positive(message = "Negative or 0 values not allowed")
     private Double priceDayTicketChildren;
 
     private LocalDate seasonFrom;

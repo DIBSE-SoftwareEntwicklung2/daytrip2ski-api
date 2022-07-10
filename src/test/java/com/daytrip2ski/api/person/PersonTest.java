@@ -9,6 +9,10 @@ import javax.validation.Validator;
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * Testing the whole persons class.
+ * Day of birth not really testable because LocalDate.of() is not allowing wrong dates.
+ */
 class PersonTest {
     private static Validator validator;
     @BeforeAll
@@ -16,6 +20,9 @@ class PersonTest {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
+    /**
+     * Test creating a successful person without score.
+     */
     @Test
     void createPersonSuccessful() {
         var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -29,6 +36,9 @@ class PersonTest {
         Assertions.assertTrue(violations.isEmpty(), violations.toString());
     }
 
+    /**
+     * Test creating a successful person with score.
+     */
     @Test
     void createPersonSuccessfulWithScore() {
         var score = new Score(1L, 0d, 0d, 0d,0d,false,false,0d,0d, 0d);
@@ -43,6 +53,9 @@ class PersonTest {
         Assertions.assertTrue(violations.isEmpty(), violations.toString());
     }
 
+    /**
+     * Test creating a successful person with wrong email address.
+     */
     @Test
     void createPersonWrongEmail() {
         var person = new Person("Max", "Mustermann", "max.mustermanntest.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -53,6 +66,9 @@ class PersonTest {
         Assertions.assertEquals("Not a valid E-Mail address", first.getMessage());
     }
 
+    /**
+     * Test creating a successful person with wrong first name.
+     */
     @Test
     void createPersonWrongFirstName() {
         var person = new Person("", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -63,6 +79,9 @@ class PersonTest {
         Assertions.assertEquals("First Name is required", first.getMessage());
     }
 
+    /**
+     * Test creating a successful person with wrong last name.
+     */
     @Test
     void createPersonWrongLastName() {
         var person = new Person("Max", "", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), 7.8, 8.9);
@@ -73,6 +92,9 @@ class PersonTest {
         Assertions.assertEquals("Last Name is required", first.getMessage());
     }
 
+    /**
+     * Test creating a successful person with wrong home positions.
+     */
     @Test
     void createPersonNoHomePosition() {
         var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 1, 8), null, null);
@@ -85,32 +107,9 @@ class PersonTest {
         Assertions.assertEquals("Home position required", second.getMessage());
     }
 
-    /*@Test
-    public void createPersonDayOfBirth() {
-        var person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 2, 29));
-        Set<ConstraintViolation<Person>> violations = validator.validate(person);
-        Assertions.assertFalse(violations.isEmpty());
-        Assertions.assertEquals(violations.size(), 1);
-        var first = violations.iterator().next();
-        Assertions.assertEquals(first.getMessage(), "Not a valid E-Mail address");
-
-        person = new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().plusDays(1));
-        violations = validator.validate(person);
-        Assertions.assertFalse(violations.isEmpty());
-        Assertions.assertEquals(violations.size(), 1);
-        first = violations.iterator().next();
-        Assertions.assertEquals(first.getMessage(), "Not a valid E-Mail address");
-    }*/
-
-
-        /*// Wrong Birthday
-        assertThrows(Exception.class, () -> {
-            new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.now().plusDays(1));
-        });
-        assertThrows(Exception.class, () -> {
-            new Person("Max", "Mustermann", "max.mustermann@test.com", LocalDate.of(1999, 2, 29));
-        });*/
-
+    /**
+     * Test transient get persons age method.
+     */
     @Test
     void getPersonsAge() {
         // Arrange
@@ -131,6 +130,9 @@ class PersonTest {
         Assertions.assertEquals(expectedAge2, actualAge2);
     }
 
+    /**
+     * Test person to string convert.
+     */
     @Test
     void personToString() {
         var date = LocalDate.now().minusYears(20).minusDays(1);

@@ -26,7 +26,6 @@ import java.time.Period;
 @ToString
 @Entity
 @Table
-@Validated
 public class Person {
     @Id
     @SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
@@ -68,6 +67,16 @@ public class Person {
     @Transient
     private Integer age;
 
+    /**
+     * Smaller Constructor without id and Score object
+     *
+     * @param firstName     first name
+     * @param lastName      last name
+     * @param email         email
+     * @param dob           day of birth
+     * @param homeLatitude  home location latitude
+     * @param homeLongitude home location longitude
+     */
     public Person(String firstName, String lastName, String email, LocalDate dob, Double homeLatitude, Double homeLongitude) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -77,6 +86,17 @@ public class Person {
         this.homeLongitude = homeLongitude;
     }
 
+    /**
+     * Smaller Constructor without id
+     *
+     * @param firstName     first name
+     * @param lastName      last name
+     * @param email         email
+     * @param dob           day of birth
+     * @param homeLatitude  home location latitude
+     * @param homeLongitude home location longitude
+     * @param score         score
+     */
     public Person(String firstName, String lastName, String email, LocalDate dob, Double homeLatitude, Double homeLongitude, Score score) {
         this.firstName = firstName;
         this.lastName = lastName;
