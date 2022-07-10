@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.daytrip2ski.api"},{"l":"com.daytrip2ski.api.common"},{"l":"com.daytrip2ski.api.person"},{"l":"com.daytrip2ski.api.skiresort"}];updateSearchResults();
