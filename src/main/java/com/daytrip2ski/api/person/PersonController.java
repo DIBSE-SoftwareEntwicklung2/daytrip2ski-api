@@ -18,21 +18,39 @@ import java.util.Optional;
 public class PersonController {
     private final PersonService personService;
 
+    /**
+     * Constructor
+     * @param personService service of class person
+     */
     @Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
 
+    /**
+     * Get all persons
+     * @return list of persons
+     */
     @GetMapping
     public List<Person> getPersons() {
         return personService.getPersons();
     }
 
+    /**
+     * Get person by id
+     * @param id id
+     * @return person
+     */
     @GetMapping(path = "{id}")
     public Optional<Person> findPersonById(@PathVariable("id") Long id) {
         return personService.findPersonById(id);
     }
 
+    /**
+     * Get score of person by id
+     * @param personId id
+     * @return score
+     */
     @GetMapping(path = "score/{personId}")
     public Optional<Score> findScorePersonById(@PathVariable("personId") Long personId) {
         return personService.findPersonScoreById(personId);
@@ -44,16 +62,22 @@ public class PersonController {
         personService.addNewPerson(person);
     }
 
+    /**
+     * Update/save existing person
+     * @param person Person to be saved
+     */
     @PostMapping(path = "save")
     @SuppressWarnings("squid:S4684") // @Valid will validate the person.
     public void savePerson(@Valid @RequestBody Person person) {
         personService.savePerson(person);
     }
 
+    /**
+     * Delete a person out of the database
+     * @param personId id
+     */
     @DeleteMapping(path = "{personId}")
     public void deletePerson(@PathVariable("personId") Long personId) {
         personService.deletePerson(personId);
     }
-
-
 }
